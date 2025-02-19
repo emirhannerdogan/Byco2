@@ -1,0 +1,96 @@
+<!-- header start -->
+<app-header-four></app-header-four>
+<!-- header end -->
+<app-shared-nav></app-shared-nav>
+
+<h1 style="margin-top: 50px;"></h1>
+
+<!-- compare area start -->
+<section class="tp-compare-area pb-120">
+  <div class="container">
+    <button (click)="goBack()" class="tp-back-btn">Geri Dön</button>
+
+    <div *ngIf="compareProducts.length === 0" class="text-center pt-50">
+      <h3>Karşılaştırılacak ürün bulunamadı</h3>
+      <a routerLink="/shop" class="tp-cart-checkout-btn mt-20">Alışverişe devam et</a>
+    </div>
+
+    <div *ngIf="compareProducts.length > 0" class="row">
+      <div class="col-xl-12">
+        <div class="tp-compare-table table-responsive text-center">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>Ürün</th>
+                <td *ngFor="let item of compareProducts">
+                  <div class="tp-compare-thumb m-auto">
+                    <img [src]="item.img" alt="product">
+                    <h4 class="tp-compare-product-title">
+                      <a [routerLink]="['/shop/shop-details', item.id]">{{ item.ad }}</a>
+                    </h4>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <th>Açıklama</th>
+                <td *ngFor="let item of compareProducts">
+                  <div class="tp-compare-desc">
+                    <p>{{ item.aciklama?.substring(0, 150) }}</p>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <th>Fiyat</th>
+                <td *ngFor="let item of compareProducts">
+                  <div class="tp-compare-price">
+                    <span *ngIf="item.indirim > 0" class="old-price">{{ item.fiyat?.toFixed(2) }}₺</span>
+                    <span>{{ ((item.fiyat - (item.fiyat * item.indirim) / 100))?.toFixed(2) }}₺</span>
+                  </div>
+                </td>
+              </tr>
+              
+
+              <!-- Sadece dolu olan özellikleri göster -->
+              <tr *ngFor="let key of filteredAttributes">
+                <th>{{ attributeNames[key] }}</th>
+                <td *ngFor="let item of compareProducts">
+                  <div class="tp-compare-desc">
+                    <p>{{ item[key] }}</p>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <th>Sepete ekle</th>
+                <td *ngFor="let item of compareProducts">
+                  <div class="tp-compare-add-to-cart">
+                    <button (click)="cartService.addCartProduct(item)" type="button" class="tp-btn">Sepete ekle</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <th>Kaldır</th>
+                <td *ngFor="let item of compareProducts">
+                  <div class="tp-compare-remove">
+                    <button (click)="compareService.removeCompare(item)">
+                      <i class="fal fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- compare area end -->
+
+<!-- footer start -->
+<app-footer-two></app-footer-two>
+<!-- footer end -->

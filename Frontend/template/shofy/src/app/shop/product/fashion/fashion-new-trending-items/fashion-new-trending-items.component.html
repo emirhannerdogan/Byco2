@@ -1,0 +1,85 @@
+<section>
+   <div class="tp-section-title-wrapper-2 text-center mb-50">
+      <p><span style=
+        "display: inline-block;
+        width: 100%; 
+        margin-right: 5%; 
+        margin-top: 1em;
+        text-align: center;
+        font-family: 'Helvetica', sans-serif !important;
+        font-weight: bold !important;
+        font-size: 30px;
+        ">
+        Projelerimiz
+    </span></p>
+   </div>
+  <style>
+
+.containerproject {
+   padding: 0 10%; /* Konteynerin sağ ve sol tarafından %10 boşluk bırakır */
+  overflow: hidden; /* Konteynerin sağ ve sol tarafından %10 boşluk bırakır */
+}
+
+   .image-containerproject {
+      height: 50vh; /* Ekranın yüksekliğine göre boyutlandır */
+  background-size: contain; /* Görselin orijinal boyutunu koruyarak kutunun içine sığdırır */
+  background-position: center;
+  background-repeat: no-repeat; /* Görselin tekrar etmesini önler */
+  transition: transform 0.5s ease, filter 0.5s ease;
+  position: relative;
+}
+
+.image-containerproject:hover {
+  transform: scale(1.05); /* Görsel üzerine geldiğinizde büyütür */
+  filter: brightness(80%); /* Biraz karartır */
+}
+
+.centered-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Tam ortalanmış metin */
+  color: white; /* Metin rengi */
+  font-size: 24px; /* Metin boyutu */
+  text-align: center; /* Metni ortalar */
+  z-index: 10; /* Metni görselin önüne alır */
+}
+
+  </style>
+
+  <div class="containerproject">
+   <div class="row h-100">
+     <!-- <div class="col-sm image-containerproject" style="background-image: url('/assets/img/eskiProje/bitmis_projeler.jpeg');" (click)="setTamamlananProje()">
+      <div class="centered-text" style="font-size:200%; font-weight: bold; font-family: 'Helvetica';">Tamamladığımız<br>Projelerimiz</div>
+     </div> -->
+     <div class="col-sm" style="text-align:center;" (click)="setTamamlananProje()">
+      <div style="font-size: 30px; margin-bottom: 9px;">
+        Tamamlanan Projelerimiz
+      </div>
+      <img src="/assets/img/eskiProje/bitmis_projeler.jpeg" alt="Devam Eden Projelerimiz" style="width: 100%; cursor: pointer;">
+     </div>
+     <div class="col-2">
+      <div></div>
+     </div>
+     <!-- <div class="col-sm image-containerproject" style="background-image: url('/assets/img/eskiProje/devam_projeler.jpeg');" routerLink="/pages/biten-projeler/devam">
+      <div class="centered-text" style="font-size:200%; font-weight: bold;">Devam Eden<br>Projelerimiz</div>
+     </div> -->
+     <div class="col-sm" style="text-align:center;" routerLink="/pages/biten-projeler/devam">
+      <div style="font-size: 30px; margin-bottom: 9px;">
+        Devam Eden Projelerimiz
+      </div>
+      <img src="/assets/img/eskiProje/devam_projeler.jpeg" alt="Devam Eden Projelerimiz" style="width: 100%;  cursor: pointer;">
+    </div>
+    
+   </div>
+   <div style="margin-top: 50px;">
+
+   </div>
+
+ </div>
+
+</section>
+
+<app-fashion-popular-products *ngIf=getTamamlananProje()></app-fashion-popular-products>
+
+<div #pageBottom></div>

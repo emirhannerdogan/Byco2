@@ -1,0 +1,464 @@
+.tp-shop-area {
+    padding-top: 20px; /* Üstten boşluk için ayarlayın */
+  }
+  .compare-tab {
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #0077aa;
+    padding: 8px 15px; // Sol ve sağ boşluk
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  
+    .compare-content {
+      margin-left: 300px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+  
+    .compare-info {
+      font-weight: bold;
+      color: #fff;
+      margin-right: 15px; // Sağ boşluk
+    }
+  
+    .compare-products {
+      display: flex;
+      gap: 10px; // Resimler arası boşluk
+      margin-right: 15px; // Sağdaki butonlarla boşluk
+      margin-left: 10px; // Soldan pay bırak
+  
+      img.compare-product-img {
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
+        border-radius: 3px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+    }
+  
+    .compare-buttons {
+      display: flex;
+      gap: 5px;
+  
+      .action-btn {
+        padding: 5px 10px;
+        background-color: #6c757d;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        font-size: 0.9rem;
+        cursor: pointer;
+  
+        &.compare {
+          background-color: #6c757d;
+        }
+  
+        &.clear {
+          background-color: #6c757d;
+        }
+  
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
+  
+    
+    &.hidden {
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+  }
+  .tab-toggle-btn {
+    position: fixed;
+    bottom: 2%;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4f6f8f;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1001;
+  
+    span {
+      font-size: 16px;
+    }
+  }
+  
+  .selected-categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  
+    .selected-category {
+      background-color: #f1f1f1;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      padding: 5px 10px;
+      margin: 5px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+  
+      .remove-btn {
+        background: none;
+        border: none;
+        color: #0077aa;
+        cursor: pointer;
+        margin-left: 8px;
+        font-size: 16px;
+      }
+    }
+  }
+  .sort-select {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .tp-shop-top-right {
+    display: flex;
+    justify-content: flex-end; /* En sağa hizala */
+    align-items: center;
+    margin-top: 20px; /* Üstten boşluk */
+  }
+  /* Genel Dropdown Stilleri */
+.custom-select {
+  width: 200px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNMyA2bDYgNiA2LTZ6IiBmaWxsPSIjMDA3YmZmIi8+PC9zdmc+'); /* Ok ikonu */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  appearance: none; /* Varsayılan tarayıcı stilini kaldır */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.custom-select option {
+  padding: 10px;
+}
+
+/* İkonlar için Farklı Arka Planlar */
+.custom-select .icon-asc {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBkPSJNOC40MiA0LjEzbC01LjIgNS4yYy0uMzMuMzMtLjg3LjMzLTEuMiAwcy0uMzMtLjg3IDAtMS4ybDYtNmMuMzMtLjMzLjg3LS4zMyAxLjIgMHMxLjMzLjggMC4xMmwtNiA2em04LjEzIDBsLTUgNWEtLjg2Ljg2IDAgMCAxLTEuMjIgMGwtNi01YTEuMDUgMS4wNSAwIDAgMS0uMTItMS4yYy4zMy0uMzMuODctLjMzIDEuMiAwbDYgNmEuODYuODYgMCAwIDEgMCAxLjEyYy0uMzMuMzMtLjg3LjMzLTEuMiAwbC01LTZsLTUgNWExLjA1IDEuMDUgMCAwIDEtLjEyIDEuMmEuODYuODYgMCAwIDAgMS4yIDBsNiA2YS44Ni44NiAwIDAgMCAxLjIgMGMuMzMuMzMuMzMuODcgMCAxLjJsLTYtNmEuODYuODYgMCAwIDAtMS4yLjAwem0tLjgxLjgybC01LTUgNi02YS45MS45MSAwIDAgMSAxLjE4LjEzYS4wMy4wMyAwIDAgMCAwIC4wNkwxNSA5Ljg2YTMuMjIgMy4yMiAwIDAgMS0uMjQgMS44N2wtNiA2LS41LjVBMy4yMiAzLjIyIDAgMCAxIDggOC4wNmw1LTUgNiA2Yy4zMy4zMyAwIC44Ny0uMTIgMS4ybC01LTYuNDctNiA1YTQuNDkgNC40OSAwIDAgMC0uMTIgMS4ybDYgNmEuODguODggMCAwIDAgMS4xNi4xNmwtNCA0em0tLjgtLjhsLTQtNGExLjA3IDEuMDcgMCAwIDAtMS42IDBsLTQgNGEuODYuODYgMCAwIDAtLjEyIDEuMmwuMTIgMS4yYy4zMy4zMy43NC40OC45MS4xMmwuMS0uMWMyLjItLjIxIDMuOS0yLjgzIDIuNDgtNC4xMmwtNi02YTEuODUgMS44NSAwIDAgMC0xLjIzIDBsLTUgNmMtLjA1LjE0LjEzLjE1LjEuMnMuMjkuMjkuMi4ybDYgNnMuMy4zLjEuMmwtLjItLjJjLS40Ni0uMy0uNzctLjQ3LTEuMDMtLjM5LTEuMjUuMi0xLjUgMi4yMS0uNDYgMy4zNyAwIC4yMS0uMzIuNC0uMzMuNTggMCAwIDEuOTYgMi4zMiAzLjkgMi4zMi0yLjgxLjM1LTQuMTQtMy4xOS0yLjY2LTUuMDFsNi02LjQ1Yy4wNS0uMDIuMDgtLjA0LjA3LS4wNGEuNDMuNDMgMCAwIDEgLjA5LjA5bDYgNmMuMzMuMzMgLjg3LjMzIDEuMiAwbDUtNS42OWwtNiA2djUuMDItMy4yLTEuNi0uMzdsNi0yLjc0Yy4wMy4wNi4xNi4wNC4yNS4wM2EuMDQuMDQgMCAwIDEgLjA0LS4wN2wuMzItLjAzYy4wOC0uMDYuMDMtLjE4LjAwLS4yNiAwIC4wNnptLjE5LjgyYTEuODIgMS44MiAwIDAgMC0yLjI3LS4yOWMtLjczLS40LTEuMjgtLjY3LTEuNjktLjYybC0yLjMzIDEuNDFjLjAyLjA1LjM0LjA1LjUyLjA2YS45OS45OSAwIDAgMCAxLjUyLS41OCAuMTguMTggMCAwIDAgMCAuMDFsLjQ0LS4yYy4wNS4wNS4xNy4wNC4yNS4wM2MuMTUuMTguMTQtLjE3LjAzLS4yOS0uMTktLjMyLS41NC0uNjEtLjg4LTEuMDIgMCAuMzMuMzcgMS4xMy41NSAxLjA5LjU3LjAxIDEuMS4yMSAxLjUxLjY5LjE3LjU1LS4wOC0uNzYtLjA1LTEuMThsLS44LTEuMDUtMS40LS4yNWwtLjM2LjQtLjM4LjA1Yy4xMy0uMDYuMjgtLjExLjQ1LS4xMi44LS4xOCAxLjI2LS40MiAxLjQxLS42OWE0LjMyIDQuMzIgMCAwIDAgMC0uMDlsLTUtNS45bDEuMTcuNjgtLjM2LjY5eiIgZmlsbD0iIzAwMEFGRiIvPjwvc3ZnPg=='); /* İkon */
+  background-repeat: no-repeat;
+  background-size: 14px;
+  background-position: left 10px center;
+}
+
+
+  
+.breadcrumb-container {
+  padding: 10px 0; /* Üst-alt boşluk */
+  background-color: white; /* Arka plan rengi */
+  border-bottom: 1px solid #ddd; /* Alt çizgi */
+  margin-left: 110px; /* Sol boşluk, hizalamak için */
+  margin-right: 110px;
+}
+
+.breadcrumb {
+  list-style: none; /* Noktaları kaldır */
+  display: flex; /* Esnek hizalama */
+  gap: 5px; /* Elemanlar arası boşluk */
+  margin: 0; /* Varsayılan margin sıfırlama */
+  padding: 0; /* Varsayılan padding sıfırlama */
+}
+
+.breadcrumb li {
+  font-size: 14px; /* Yazı boyutu */
+  color: #000; /* Varsayılan siyah renk */
+  cursor: pointer; /* Tıklama ikonu */
+}
+
+.breadcrumb li a {
+  color: #000; /* Varsayılan siyah renk */
+  text-decoration: none; /* Alt çizgiyi kaldır */
+  transition: color 0.3s ease; /* Hover geçiş animasyonu */
+}
+
+.breadcrumb li a:hover {
+  color: #005a96; /* Hover sırasında mavi renk */
+}
+
+.breadcrumb li::after {
+  content: '>'; /* Breadcrumb arasında > işareti */
+  margin: 0 5px; /* Sağ ve sol boşluk */
+  color: #999; /* Renk */
+}
+
+.breadcrumb li:last-child::after {
+  content: ''; /* Son elemanda > işaretini kaldır */
+}
+
+.breadcrumb li span {
+  color: #666; /* Son breadcrumb metin rengi (seçilemez) */
+}
+
+
+.price-range-container {
+  margin-bottom: 20px;
+}
+.price-slider {
+  position: relative;
+  height: 4px;
+  background-color: #ccc;
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+.range-track {
+  position: absolute;
+  height: 4px;
+  background-color: black;
+  border-radius: 2px;
+  top: 0;
+  z-index: 1;
+}
+
+.price-slider input[type="range"] {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  margin: 0;
+  background: none;
+  appearance: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.price-slider input[type="range"]::-webkit-slider-thumb {
+  pointer-events: all;
+  width: 16px;
+  height: 16px;
+  background: black;
+  border-radius: 50%;
+  cursor: pointer;
+  appearance: none;
+  z-index: 3;
+}
+
+.price-slider input[type="range"]::-moz-range-thumb {
+  pointer-events: all;
+  width: 16px;
+  height: 16px;
+  background: black;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.price-slider input[type="range"]::-ms-thumb {
+  pointer-events: all;
+  width: 16px;
+  height: 16px;
+  background: black;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .compare-tab {
+    width: 100%; /* Çubuğu ekran genişliğine uyacak şekilde sınırlandırdık */
+    height: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end; /* İçeriği ortaya aldık */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    overflow: hidden;
+    position: fixed;
+
+  }
+
+  .compare-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* İçeriği eşit şekilde yaydık */
+    width: 100%;
+    gap: 5px;
+    
+  }
+
+  .compare-info {
+    font-size: 11px;
+    white-space: nowrap;
+    flex-shrink: 0; 
+  }
+
+  .compare-products {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Resimleri ortaladık */
+    flex-grow: 1;
+    gap: 5px;
+  }
+
+  .compare-products img {
+    max-width: 45px;
+    max-height: 40px;
+    flex-shrink: 0;
+
+  }
+
+
+  .tab-toggle-btn {
+    font-size: 12px;
+    bottom: 3px;
+  }
+}
+
+@media (max-width: 768px) {
+  .compare-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+    margin-left: 20px; /* Butonları sola çek */
+  padding-right: 40px;
+  }
+
+  .compare-buttons .action-btn {
+    font-size: 14px;
+    padding: 6px;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+  .compare-buttons .compare {
+    background-color: transparent;
+    color: white;
+  }
+
+  .compare-buttons .clear {
+    background-color: transparent;
+    color: white;
+  }
+
+  /* ✅ MOBİLDE METİNLERİ GİZLE, SADECE İKON GÖRÜNSÜN */
+  .compare-buttons .desktop-text {
+    display: none;
+  }
+
+  /* ✅ MOBİLDE İKONLARI GÖSTER */
+  .compare-buttons .mobile-icon {
+    display: block;
+  }
+}
+
+/* ✅ MASAÜSTÜNDE İKONLARI GİZLE, METİNLERİ GÖSTER */
+@media (min-width: 769px) {
+  .compare-buttons .mobile-icon {
+    display: none;
+  }
+
+  .compare-buttons .desktop-text {
+    display: inline;
+  }
+}
+
+@media (max-width: 768px) {
+  .breadcrumb-container {
+      width: 100%; /* Tam genişlik */
+      max-width: 100vw; /* Sayfanın tamamını kaplasın */
+      padding-left: 0; /* Sol boşluğu kaldır */
+      margin-left: 0; /* Sol kenara tam yapıştır */
+      overflow-x: auto; /* Taşarsa yatay kaydırma ekle */
+      white-space: nowrap; /* Alt alta gelmeyi önle */
+  }
+
+  .breadcrumb {
+      display: flex;
+      flex-wrap: nowrap; /* Satır içine sığmasını zorla */
+      width: 100%; /* Tam genişlik */
+      justify-content: flex-start; /* Sola hizala */
+      gap: 5px; /* Boşlukları düzenle */
+      padding-left: 8px;
+  }
+
+  .breadcrumb li {
+      display: inline-block;
+      flex-shrink: 0; /* Elemanların sıkışmasını engelle */
+  }
+
+  .breadcrumb a, .breadcrumb span {
+      font-size: 12px;
+  }
+
+  .tp-shop-items-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Tüm içerikleri ortala */
+    text-align: center; /* Metinleri ortala */
+  }
+
+  /* Ürün kartlarını tam ortala */
+  .tp-shop-items-wrapper .infinite-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Resim ve metni ortala */
+    justify-content: center;
+    width: 100%;
+    max-width: 360px; /* Ürün genişliğini sınırlı tut */
+    margin: 0 auto; /* Ortalamayı sağla */
+  }
+
+  /* Resimleri tam ortala */
+  .tp-shop-items-wrapper .infinite-item img {
+    display: block;
+    margin: 0 auto; /* Görselleri tam ortala */
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Ürün başlıklarını tam ortala */
+  .tp-shop-items-wrapper .product-title {
+    text-align: center;
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Kategori ve fiyat bilgileri de ortalansın */
+  .tp-shop-items-wrapper .product-meta {
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Sepet ve karşılaştırma butonlarını da tam ortala */
+  .tp-shop-items-wrapper .product-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+}
+
+

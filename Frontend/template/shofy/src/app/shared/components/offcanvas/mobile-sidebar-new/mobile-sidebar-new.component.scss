@@ -1,0 +1,17 @@
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Arama çubuğu ile ikon arasına mesafe koyar */
+    margin-bottom: 30px;
+  }
+  
+  .search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

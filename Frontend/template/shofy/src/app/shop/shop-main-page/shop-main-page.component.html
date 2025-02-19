@@ -1,0 +1,125 @@
+
+<!-- Kayar yazılar -->
+
+
+
+<div class="shop-main-page-container">
+  <!-- <div class="banner-left">
+    <a href="https://www.4usgames.com/" target="_blank" class="banner-left">
+      <img src="assets/banner.png" alt="Left Banner" />
+    </a>
+  </div> -->
+  <div class="main-content">
+    
+    <div class="custom-category-carousel">
+      <button class="carousel-btn prev" (click)="customPreviousSlide()">&#10094;</button>
+      <swiper-container
+        #customSwiperEl
+        [breakpoints]="customBreakpointsConfig"
+        loop="true"
+        navigation="false"
+        class="swiper-container"
+        spaceBetween="0"
+      >
+        <swiper-slide *ngFor="let category of customCategories">
+          <div class="carousel-item" (click)="navigateWithCategory(category.link)">
+            <div class="item-image">
+              <img [src]="category.image" [alt]="category.title" />
+            </div>
+            <div class="item-title">{{ category.title }}</div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+      <button class="carousel-btn next" (click)="customNextSlide()">&#10095;</button>
+    </div>
+    
+    <div class="offers-header">
+      <button (click)="previousProduct()" class="offers-nav-button-mobile-left">❮</button>
+      Fırsat Ürünleri
+      <button (click)="nextProduct()" class="offers-nav-button-mobile-right">❯</button>
+    </div>
+    <!-- Fırsat Ürünleri Section -->
+    <div class="offers-container">
+      
+      <div class="offers-section">
+        <div class="offers-title col-3">  
+          <div class="offers-title-wrapper">
+            <img src="assets/firsat.jpg" alt="Fırsat Ürünleri" class="offers-title-image" />
+            <div class="offers-overlay-text">Fırsat Ürünleri</div>
+          </div>
+          <div class="offers-nav">
+            <button (click)="previousProduct()" class="offers-nav-button">❮</button>
+            <button (click)="nextProduct()" class="offers-nav-button">❯</button>
+          </div>
+        </div>
+        <!-- Mobilde sadece başlık ve butonlar -->
+       
+
+        <!-- Swiper Carousel -->
+        <swiper-container
+          #swiperEl
+          [breakpoints]="breakpointsConfig"
+          class="swiper-container"
+        >
+          <swiper-slide *ngFor="let item of featuredProducts">
+            <app-product-item-two [product]="item" [spacing]="true"></app-product-item-two>
+          </swiper-slide>
+        </swiper-container>
+      
+
+      </div>
+    </div>
+
+
+    <!-- featured-categories -->
+    <div class="featured-categories">
+      <h2>Öne Çıkan Kategoriler</h2>
+      <div class="categories-grid">
+        <div class="category-card" *ngFor="let category of categories">
+          <img [src]="category.image" [alt]="category.title" class="category-image" />
+          <div class="category-overlay">
+            <span class="category-title">{{ category.title }}</span>
+            <a href="{{ category.link }}" class="view-all-link">Tümünü Gör</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizin İçin Seçtiklerimiz,Çok Satanlar,İndirimli Ürünler section -->
+    <div class="tab-container">
+      <div class="tab-header">
+        <span (click)="selectTab('recommended')" [class.active]="activeTab === 'recommended'">Sizin İçin Seçtiklerimiz</span>
+        <span (click)="selectTab('bestSellers')" [class.active]="activeTab === 'bestSellers'">Çok Satanlar</span>
+        <span (click)="selectTab('discounted')" [class.active]="activeTab === 'discounted'">İndirimli Ürünler</span>
+      </div>
+
+      <div class="product-grid">
+        <div *ngFor="let item of displayedProducts" class="product-wrapper">
+          <app-product-item-two [product]="item" [spacing]="true"></app-product-item-two>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Çeşitli Elektrik Ürünleri section -->
+    <div class="featured-categories">
+      <h2>Çeşitli Elektrik Ürünleri</h2>
+      <div class="categories-grid">
+        <div class="category-card" *ngFor="let product of electricProducts">
+          <img [src]="product.image" [alt]="product.title" class="category-image" />
+          <div class="category-overlay">
+            <span class="category-title">{{ product.title }}</span>
+            <a href="{{ product.link }}" class="view-all-link">Tümünü Gör</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="banner-right">
+    <a href="https://www.4usgames.com/" target="_blank" class="banner-right">
+      <img src="assets/banner.png" alt="Right Banner" />
+    </a>
+  </div> -->
+</div>
+
+

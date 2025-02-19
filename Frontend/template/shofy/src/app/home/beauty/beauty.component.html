@@ -1,0 +1,516 @@
+<!-- header start -->
+<app-header-three></app-header-three>
+<!-- header end -->
+
+
+<!-- hero banner start -->
+<app-hero-banner-three></app-hero-banner-three>
+<!-- hero banner end -->
+
+<!-- category area start -->
+<!-- <app-beauty-category></app-beauty-category> -->
+<!-- category area end -->
+
+<!-- Açıklama Başlangıcı -->
+<style>
+    .containertp {
+      position: relative;
+      width: 100%;
+      height:fit-content;
+      background-image: url(/assets/img/map-background.jpg);
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      justify-content: center; /* Yatayda ortala */
+  align-items: center;
+    }
+    .hover-image {
+    transition: opacity 0.5s, transform 0.5s; /* Yumuşak geçişler için */
+}
+
+.hover-image:hover {
+    opacity: 0.7; /* Hover durumunda opaklık değişikliği */
+    transform: scale(1.5); /* Hover durumunda %10 büyüt */
+}
+
+
+</style>
+<section class="tp-featured-product-area pt-80 pb-150">
+   <div class="container">
+
+    <p><span style=
+        "display: inline-block;
+        width: 100%; 
+        margin-right: 5%; 
+        margin-top: 1em;
+        text-align: justify;
+        font-family: 'Helvetica', sans-serif !important;
+        font-weight: bold !important;
+        font-size: 30px;
+        text-align: center;
+        ">
+        BYCO Mühendislik
+        </span></p>
+    <div style="display: inline-block; width: 100%;vertical-align: top; margin-top: 1px; text-align: justify;">
+      
+        
+      <p><span style=
+        "display: inline-block;
+        width: 100%; 
+        margin-right: 5%; 
+        margin-top: 1em;
+        text-align: justify;
+        font-family: 'Helvetica', sans-serif !important;
+        font-weight: bold !important;
+        font-size: 20px;
+        text-align: center;
+        ">
+        Bugünün ve Yarının Çözüm Ortağı
+        </span></p>
+      <p><span style=
+         "display: inline-block;
+         width: 100%; 
+         margin-right: 5%; 
+         margin-top: 1em;
+         text-align: justify;
+         font-family: 'Helvetica', sans-serif !important;
+         font-weight: light !important;
+         text-align: center;
+         ">
+         BYCO Mühendislik 2013 yılında inşaat ve elektrik 
+            taahhüt hizmetleri vermek amacı ile kurulmuştur.BYCO
+             Mühendislik sektörde yaklaşık {{hizmetYili()}} yıllık bilgi birikimine sahip, 
+             tecrübeli ve mühendis kurucu ortaklar tarafından
+              hayata geçirilmiştir. <br><br>
+              BYCO Mühendislik hedeflerini sürdürülebilir ve 
+              yönetilebilir olması kaydı ile benimsemiş; sektörde 
+              farklılık yaratacak hizmetlerini üstün kalite
+               politikası ile birlikte sunmaktadır. Verilen hizmetlerin
+               tamamı sonuç odaklı ve gerekli tüm bakımların 
+               kendi bünyemizde sizlere sunulacağının 
+               taahhütünü vermek bizlerin markalaşma 
+               sürecindeki en büyük yapı taşının olduğuna 
+               inanmaktayız.<br><br>
+               BYCO Mühendislik uzman mühendis 
+               kadrosu ve bilgi birikimi ile siz değerli 
+               müşterilerine inşaat ve elektrik taahhüt 
+               sektörlerinde hizmet vermektedir.
+         </span></p>
+        </div>
+        <!-- <div style="display: inline-block; width: 4%;vertical-align: top; margin-top: 1em; text-align: justify;"></div> -->
+      <div style="display: inline-block; width: 100%;vertical-align: top; margin-top: 1px; text-align: justify;">
+
+        <p>
+            <span style=
+         "display: inline-block;
+         width: 100%; 
+         margin-right: 5%; 
+         margin-top: 1em;
+         text-align: justify;
+         font-family: 'Helvetica', sans-serif !important;
+         font-weight: bold !important;
+         font-size: 20px;
+         text-align: center;
+         ">Neden BYCO?</span></p>
+        
+         
+         <p>
+            <span style=
+         "display: inline-block;
+         width: 100%; 
+         margin-right: 5%; 
+         margin-top: 1em;
+         text-align: justify;
+         font-family: 'Helvetica', sans-serif !important;
+         font-weight: light !important;
+         text-align: center;
+         ">
+         Sektörde yılların getirdiği bilgi birikimine sahip, uzman
+             ve mühendis kurucu ortakları tarafından
+             hayata geçirilen BYCO;
+              inşaat,elektrik taahhüt ve akıllı ev sistemleri
+               hizmetleri vermek amacı ile kurulmuştur.<br>
+                <br> Sosyal medya hesaplarımızdan
+                 bizleri takip edebilirsiniz.</span></p>
+
+                 <div class="tp-login-social mb-10 d-flex flex-wrap align-items-center justify-content-center">
+                  <div class="tp-login-option-item">
+                      <a href="https://x.com/byco_as" target="_blank">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAAA3ElEQVR4Ac2SGQDFMBBE1ylOcYpTner0neK0TnGpU53iFKc6xWl+p+f25D7InZ295Cv0mGjFUOzWDVVVa/WykaBiaBBFfsiyory3JASRjs8mInqxUGRw47CIBIy7Ew0Sh0nED4OXCwkNh8h7GrrgCkVK9a7w6Q2BjoVa6Oo9EZEDVJ7I1M4UeMDXzIEhvoukFxNMaP8o4gpon1l9qnqc7DcPIgpd7Ce0t/fJVO0q0qIsVeuY1XwNYK1gwm8J2GAqvHRF5mD7BcG0Rl6yegjw0BqdakE8Bni0RyjyDf4Y1Y0n0wNT4wAAAABJRU5ErkJggg==" alt="x" style="width: 20px; height: 20px;">
+                      </a>
+                  </div>
+                  <div class="tp-login-option-item">
+                      <a href="https://www.facebook.com/bycomuhendislik" target="_blank">
+                        <img src="/assets/img/icon/login/facebook.svg" alt="facebook">
+                      </a>
+                  </div>
+                  <div class="tp-login-option-item">
+                     <a href="https://www.linkedin.com/company/byco" target="_blank">
+                       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABDUlEQVR4AWP4////gOLB44D6nTcsGIo33QHi/zTGd0B2YTiAPpYjHIHNAf/piQk6wGPW8f/rLz8HYRCbXg5AWI4GQGJ0cwDY12gAJDbcHUA4CkZAIqQUK7Ts/m/SfxBMs5RupswBaACr+P47b/5zlG/5DyzZ/r/+8hNF7vuvP//nn3r0X6JhJ+0ccPrR+/+H7735jw9cf/n5v0D1Nuo5gBxQve06zR0AjoL7b7/+//zjN4bc+ScfaOeA33///k9Yfg4mDw7u/Xdeo6uhnQP6D93FMNxlxjF0ZbRzgMXEQ9iyI90cALIMJoccDXRzAK6CZog6YNQBow6gIx54Bwx4x2RAu2bAysoEZu9o7xgAQrvkxt3WZi0AAAAASUVORK5CYII=" alt="linkedin" style="width: 20px; height: 20px;">
+                     </a>
+                 </div>
+                  <div class="tp-login-option-item">
+                      <a href="https://www.instagram.com/byco_elektrik/" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1000px-Instagram_logo_2022.svg.png" alt="linkedin" style="width: 20px; height: 20px;">
+                      </a>
+                  </div>
+                </div>
+                
+      </div>
+   </div>
+</section>
+<!-- Açıklama Sonu -->
+
+<!-- instagram area start -->
+
+<!-- instagram area end -->
+
+<!-- Açıklama Başlangıcı -->
+<section>
+   <a routerLink="../pages/hizmetler"><div class="containertp" style="text-align: center; text-align: justify;">
+    <p>
+        <span style=
+     "display: inline-block;
+     width: 100%; 
+     margin-right: 5%; 
+     margin-top: 1em;
+     text-align: center;
+     font-family: 'Helvetica', sans-serif !important;
+     font-weight: bold !important;
+     font-size: 30px;
+     ">Hizmetlerimiz</span></p>
+    
+     
+
+        <p>
+            <span style=
+         "display: inline-block;
+         width: 100%; 
+         margin-right: 5%; 
+         margin-top: 1em;
+         text-align: center;
+         font-family: 'Helvetica', sans-serif !important;
+         font-weight: bold !important;
+         font-size: 20px;
+         ">BYCO; Genç ve dinamik mühendis kadrosu ile sektördeki tüm yenilikleri takip etmektedir.</span></p>
+        
+         <br><br>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-sm-12 col-md-6 col-lg-3" style="vertical-align: top; display: inline-block; margin-top: 1em; text-align: justify;">
+         <img 
+            src="/assets/img/byco/binalar.png" 
+            alt="" 
+            class="hover-image"
+            style="
+               display: block; 
+               margin-left: auto; 
+               margin-right: auto;
+               margin-bottom: 1em;
+               width: 5em;
+               height: auto;"
+            >
+            <p>
+                <span style=
+             "display: inline-block;
+             width: 100%; 
+             margin-right: 5%; 
+             margin-top: 1em;
+             text-align: center;
+             font-family: 'Helvetica', sans-serif !important;
+             font-weight: bold !important;
+             ">Taahhüt</span></p>
+         <p><span style=
+            "display: inline-block;
+            width: 100%; 
+            margin-right: 5%; 
+            margin-top: 1em;
+            text-align: center;
+            font-family: 'Helvetica', sans-serif !important;
+            font-weight: light !important;
+            ">Endüstriyel tesislere, alışveriş 
+            merkezlerine, toplu konutlara, 
+            sağlık ve egitim tesislerine, ofis 
+            binalarına yönelik elektrik mühendisliği 
+            ve müteahhitlik hizmeti vermektedir.</span>
+         </p>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-3" style="vertical-align: top; display: inline-block; margin-top: 1em; text-align: justify;">
+         <img 
+            src="/assets/img/byco/butce.png" 
+            alt="" 
+            class="hover-image"
+            style="
+               display: block; 
+               margin-left: auto; 
+               margin-right: auto;
+               margin-bottom: 1em;
+               width: 5em;
+               height: auto;"
+            >
+            <p>
+                <span style=
+             "display: inline-block;
+             width: 100%; 
+             margin-right: 5%; 
+             margin-top: 1em;
+             text-align: center;
+             font-family: 'Helvetica', sans-serif !important;
+             font-weight: bold !important;
+             ">Proje ve Bütçelendirme</span></p>
+             <p>
+                <span style=
+             "display: inline-block;
+             width: 100%; 
+             margin-right: 5%; 
+             margin-top: 1em;
+             text-align: center;
+             font-family: 'Helvetica', sans-serif !important;
+             font-weight: light !important;
+             ">BYCO Mühendislik Elektrik olarak, 
+            yapılacak olan her türlü tesisin ve 
+            binanın, elektrik tesisatının, altyapının, 
+            üst yapının projelendirilmesi ve 
+            bütçelendirilmesi hizmetlerini sunmaktadır.</span></p>
+         
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-3" style="vertical-align: top; display: inline-block; margin-top: 3em; text-align: justify;">
+         <img 
+            src="/assets/img/byco/musavirlik.png" 
+            alt="" 
+            class="hover-image"
+            style="
+               display: block; 
+               margin-left: auto; 
+               margin-right: auto;
+               margin-bottom: 1em;
+               width: 5em;
+               height: auto;"
+         >
+         <p>
+            <span style=
+         "display: inline-block;
+         width: 100%; 
+         margin-right: 5%; 
+         margin-top: 1em;
+         text-align: center;
+         font-family: 'Helvetica', sans-serif !important;
+         font-weight: bold !important;
+         ">Müşavirlik</span></p>
+         <p>
+            <span style=
+         "display: inline-block;
+         width: 100%; 
+         margin-right: 5%; 
+         margin-top: 1em;
+         text-align: center;
+         font-family: 'Helvetica', sans-serif !important;
+         font-weight: light !important;
+         ">Firma olarak sahip olduğumuz deneyim sayesinde 
+            hem proje bazında hem de satış sonrası servisler alanında her 
+            nevi müşavirlik hizmetlerini vermektedir.<br><br></span></p>
+         
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-3" style="vertical-align: top; display: inline-block; margin-top: 1em; text-align: justify;">
+         <img 
+            src="/assets/img/byco/matkap.png" 
+            alt="" 
+            class="hover-image"
+            style="
+               display: block; 
+               margin-left: auto; 
+               margin-right: auto;
+               margin-bottom: 1em;
+               width: 5em;
+               height: auto;"
+            >
+            <p>
+                <span style=
+             "display: inline-block;
+             width: 100%; 
+             margin-right: 5%; 
+             margin-top: 1em;
+             text-align: center;
+             font-family: 'Helvetica', sans-serif !important;
+             font-weight: bold !important;
+             ">Teknik Destek</span></p>
+             <p>
+                <span style=
+             "display: inline-block;
+             width: 100%; 
+             margin-right: 5%; 
+             margin-top: 1em;
+             text-align: center;
+             font-family: 'Helvetica', sans-serif !important;
+             font-weight: light !important;
+             ">Şirketimiz projeler tamamlandıktan sonra da 
+            herhangi oluşabilecek bir problemde 
+            teknik desteğimiz devam etmektedir.<br><br></span></p>
+      </div>
+    </div>
+      
+   </div>
+</a>
+</section>
+<!-- Açıklama Sonu -->
+
+
+
+<!-- Devam eden projeler burada -->
+<!-- <app-beauty-special-products></app-beauty-special-products> -->
+
+
+
+<!-- featured area start -->
+<!-- <section class="tp-featured-product-area pt-70 pb-150">
+  <div class="container">
+     <div class="row gx-0">
+        <div *ngFor="let item of featured_data" class="col-lg-4 col-md-6">
+           <div class="tp-featured-item-3 text-center">
+              <div class="tp-featured-thumb-3 d-flex align-items-end justify-content-center">
+                 <img [src]="item.img" alt="feature-img">
+              </div>
+              <div class="tp-featured-content-3">
+                 <h3 class="tp-featured-title-3">
+                    <a routerLink="/shop" [innerHTML]="item.title"></a>
+                 </h3>
+                 <p>{{item.subtitle}}</p>
+                 <div class="tp-featured-price-3">
+                    <span>Save ${{item.save}}</span>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section> -->
+<!-- featured area end -->
+
+<!-- product area start -->
+<!-- <section class="tp-product-area grey-bg-8 pt-95 pb-80">
+  <div class="container">
+     <div class="row align-items-end">
+        <div class="col-lg-6 col-md-8">
+           <div class="tp-section-title-wrapper-3 mb-55">
+              <span class="tp-section-title-pre-3">Shop by Category</span>
+              <h3 class="tp-section-title-3">Best sellers in beauty</h3>
+           </div>
+        </div>
+        <div class="col-lg-6 col-md-4">
+           <div class="tp-product-more-3 text-md-end mb-65">
+              <a routerLink="/shop" class="tp-btn">
+                 Shop All Products
+                 <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.9994 4.99981L1.04004 4.99981" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.98291 1L10.9998 4.99967L6.98291 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>
+              </a>
+           </div>
+        </div>
+     </div>
+     <div class="row">
+        <div *ngFor="let item of products" class="col-lg-3 col-md-4 col-sm-6">
+           <app-product-item-three [product]="item"></app-product-item-three>
+        </div>
+     </div>
+  </div>
+</section> -->
+<!-- product area end -->
+
+<!-- collection area start -->
+<!-- <section class="tp-collection-area pt-120">
+  <div class="container">
+     <div class="row gx-2 gy-2 gy-md-0">
+        <div class="col-xl-7 col-md-6">
+           <div class="tp-collection-item tp-collection-height grey-bg p-relative z-index-1 fix">
+              <div class="tp-collection-thumb include-bg include-bg transition-3" style="background-image: url(/assets/img/product/collection/collection-1.jpg);"></div>
+              <div class="tp-collection-content">
+                 <span>Cosmetics Collection</span>
+                 <h3 class="tp-collection-title">
+                    <a routerLink="/shop">Foundation and <br> powder brush</a>
+                 </h3>
+                 <div class="tp-collection-btn">
+                    <a routerLink="/shop" class="tp-btn">
+                       Discover Now
+                       <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.9994 4.99981L1.04004 4.99981" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M6.98291 1L10.9998 4.99967L6.98291 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                       </svg>
+                    </a>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="col-xl-5 col-md-6">
+           <div class="tp-collection-item tp-collection-height grey-bg p-relative z-index-1 fix">
+              <div class="tp-collection-thumb has-overlay include-bg transition-3" style="background-image: url(/assets/img/product/collection/collection-2.jpg);">
+              </div>
+              <div class="tp-collection-content-1">
+                 <h3 class="tp-collection-title-1">
+                    <a routerLink="/shop">Tops <br> Blouse Shirts</a>
+                 </h3>
+                 <div class="tp-collection-btn-1">
+                    <a routerLink="/shop" class="tp-link-btn-line">Shop Collection</a>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-4 col-md-5">
+           <div class="tp-collection-offer-wrapper mt-20">
+              <p>Discover our Beauty Selection <span>75% Extra Discount</span> for your...</p>
+           </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-5">
+           <div class="tp-collection-countdown d-flex align-items-center justify-content-center justify-content-md-start ml-20 mt-20">
+              <div class="tp-product-countdown" data-countdown data-date="Sep 30 2024 20:20:22">
+                 <div class="tp-product-countdown-inner">
+                    <app-countdown-timer [date]="'Sep 30 2024 20:20:22'"></app-countdown-timer>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section> -->
+<!-- collection area end -->
+
+<!-- all product items start -->
+<!-- <app-beauty-all-products></app-beauty-all-products> -->
+<!-- all product items end -->
+
+<!-- product special area start -->
+<!-- <app-beauty-special-products></app-beauty-special-products> -->
+<!-- product special area end -->
+
+
+<!-- testimonial start -->
+<!-- <app-beauty-testimonial></app-beauty-testimonial> -->
+<!-- testimonial end -->
+
+
+<!-- feature area start -->
+<!-- <section class="tp-feature-area tp-feature-border-2 pb-80">
+  <div class="container">
+     <div class="tp-feature-inner-2">
+        <div class="row align-items-center">
+           <div *ngFor="let item of feature_items" class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+              <div class="tp-feature-item-2 d-flex align-items-start">
+                 <div class="tp-feature-icon-2 mr-10">
+                  <span [innerHTML]="sanitizeHtml(item.icon)"></span>
+                 </div>
+                 <div class="tp-feature-content-2">
+                    <h3 class="tp-feature-title-2">{{item.title}}</h3>
+                    <p>{{item.subtitle}}</p>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section> -->
+<!-- feature area end -->
+
+ <!-- footer start -->
+ <app-footer-two></app-footer-two>
+ <!-- footer end -->

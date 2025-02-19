@@ -1,0 +1,1180 @@
+<!-- header start -->
+<app-header-four></app-header-four>
+<!-- header end -->
+<app-shared-nav></app-shared-nav>
+
+<main>
+  <!-- breadcrumb area start -->
+  <div style="background-color: #EFF1F5;">
+    <app-breadcrumb-one [title]="title" [subtitle]="subtitle"></app-breadcrumb-one>
+  </div>
+  <!-- breadcrumb area end -->
+
+  <!-- checkout area start -->
+  <section class="tp-checkout-area pb-120" style="background-color: #EFF1F5;">
+    <div class="container">
+      <div *ngIf="cartService.getCartProducts().length === 0;else checkoutBlock" class="text-center pt-50">
+        <h3 class="py-2">Seçili ürün bulunmuyor</h3>
+        <a routerLink="/shop" class="tp-checkout-btn">
+          Alışverişe dön
+        </a>
+      </div>
+
+      <ng-template #checkoutBlock>
+        <div class="row">
+          <div class="col-xl-7 col-lg-7">
+            <div class="tp-checkout-verify">
+              <div class="tp-checkout-verify-item">
+                
+                <div *ngIf="isOpenLogin" id="tpReturnCustomerLoginForm" class="tp-return-customer">
+                  <app-login-form></app-login-form>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <form [formGroup]="checkoutForm">
+            <div class="row">
+              <div class="col-lg-7">
+                <div *ngIf="currentStep == 0">
+                  <!-- Bilgiler Alanı -->
+                  <div class="tp-checkout-bill-area">
+                    <h3 class="tp-checkout-bill-title">Bilgiler</h3>
+                
+                    <div class="radio-buttons">
+                      <input type="radio" id="person" value="0" [checked]="customerType == 0" name="persontype" formControlName="persontype" (input)="setAsPersonal()">
+                      <label for="person">Bireysel</label>
+                      <input type="radio" id="company" value="1" [checked]="customerType == 1" name="persontype" formControlName="persontype" (input)="setAsCompany()">
+                      <label for="company">Kurumsal</label>
+                    </div>
+                
+                    <form [formGroup]="checkoutForm" (ngSubmit)="updateInfo()" #updateInfoForm="ngForm">
+                      <div class="row">
+                        <div class="col-xxl-6 col-md-6">
+                          <div class="profile__input-box">
+                            <div class="profile__input">
+                              <input type="text" name="adsoyad" id="adsoyad" [placeholder]="placeholderType[0]" formControlName="name" [(ngModel)]="fullName" required>
+                              <span>
+                                <svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M9 9C11.2091 9 13 7.20914 13 5C13 2.79086 11.2091 1 9 1C6.79086 1 5 2.79086 5 5C5 7.20914 6.79086 9 9 9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <path d="M15.5 17.6C15.5 14.504 12.3626 12 8.5 12C4.63737 12 1.5 14.504 1.5 17.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="col-xxl-6 col-md-6">
+                          <div class="profile__input-box">
+                            <div class="profile__input">
+                              <input type="email" name="mail" id="mail" [placeholder]="placeholderType[1]" formControlName="email" [(ngModel)]="myUserObject.email" required>
+                              <span>
+                                <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M13 14.6H5C2.6 14.6 1 13.4 1 10.6V5C1 2.2 2.6 1 5 1H13C15.4 1 17 2.2 17 5V10.6C17 13.4 15.4 14.6 13 14.6Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <path d="M13 5.3999L10.496 7.3999C9.672 8.0559 8.32 8.0559 7.496 7.3999L5 5.3999" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="col-xxl-6 col-md-6">
+                          <div class="profile__input-box">
+                            <div class="profile__input">
+                              <input 
+                                type="text"
+                                id="vkno" 
+                                formControlName="id" 
+                                [placeholder]="placeholderType[2]"
+                                [(ngModel)]="customerType == 0 ? myUserObject.tcknvkn : myUserObject.vkno" required
+                                (keypress)="allowOnlyNumbers($event)"
+                                [maxlength]="customerType == 0 ? '11' : '10'"
+                              />
+                              <span><i class="fa-light fa-clipboard-list-check"></i></span>
+                            </div>
+                        
+                            <div *ngIf="idInvalid" class="text-danger">
+                              {{ customerType == 0 ? 'T.C. kimlik numaranızı doğru giriniz' : 'Vergi kimlik numaranızı doğru giriniz' }}
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="col-xxl-6 col-md-6">
+                          <div class="profile__input-box">
+                            <div class="profile__input">
+                              <input type="text" name="tel" id="tel" [placeholder]="placeholderType[3]" formControlName="phone" [(ngModel)]="myUserObject.telefon" required (keypress)="allowOnlyNumbers($event)" maxlength="11">
+                              <span>
+                                <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M13.9148 5V13C13.9148 16.2 13.1076 17 9.87892 17H5.03587C1.80717 17 1 16.2 1 13V5C1 1.8 1.80717 1 5.03587 1H9.87892C13.1076 1 13.9148 1.8 13.9148 5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <path opacity="0.4" d="M9.08026 3.80054H5.85156" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <path opacity="0.4" d="M7.45425 14.6795C8.14522 14.6795 8.70537 14.1243 8.70537 13.4395C8.70537 12.7546 8.14522 12.1995 7.45425 12.1995C6.76327 12.1995 6.20312 12.7546 6.20312 13.4395C6.20312 14.1243 6.76327 14.6795 7.45425 14.6795Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </span>
+                            </div>
+                            <div *ngIf="phoneInvalid" class="text-danger">Telefon numaranızı doğru giriniz</div>
+                          </div>
+                        </div>
+                
+                        <div class="col-xxl-12" *ngIf="customerType == 1">
+                          <div class="profile__input-box">
+                            <div class="profile__input">
+                              <!-- Arama Kutusu -->
+                              <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Vergi Dairesi Ara"
+                                [(ngModel)]="searchTerm"
+                                [ngModelOptions]="{standalone: true}"
+                                (input)="filterVergiDaireleri()"
+                                (focus)="showDropdown = true"
+                                (blur)="hideDropdown()"
+                              />
+                        
+                              <!-- Dropdown Menü -->
+                              <div
+                                class="dropdown"
+                                *ngIf="showDropdown && filteredVergiDaireleri.length > 0"
+                              >
+                                <ul class="dropdown-menu show" style="display: block; position: absolute;">
+                                  <li
+                                    *ngFor="let item of filteredVergiDaireleri"
+                                    (click)="selectVergiDairesi(item)"
+                                    class="dropdown-item"
+                                  >
+                                    {{ item.il + ' ' + item.ilce + ' ' + item.muhasebe_birimi_kodu + ' ' + item.vergi_dairesi }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+                      </div>
+                    </form>
+                
+                    <div *ngIf="infoUpdated" class="success-message" style="color: green;">
+                      Bilgiler başarıyla güncellendi.
+                    </div>
+                  </div>
+                
+                  <!-- Adres Alanı -->
+                  <div class="tp-checkout-address-area white-box">
+                    <form [formGroup]="shippingAddressForm">
+                      <!-- Visible Shipping Address Field -->
+                      <div class="form-group">
+                        <label for="shippingaddress">Kargo Adresi</label>
+                        <input type="text" id="shippingaddress" name="shippingaddress" formControlName="shippingaddress" maxlength="100" required>
+                      </div>
+                  
+                      <!-- Hidden Static Fields for Shipping (City, District, ZIP) -->
+                      <input type="hidden" formControlName="shippingselect" value="Istanbul">
+                      <input type="hidden" formControlName="shippingselectstate" value="Kadıköy">
+                      <input type="hidden" formControlName="shippingzip" value="34848">
+                  
+                      <!-- Checkbox to Copy Shipping Address to Billing -->
+                      <div class="billing-checkbox" style="margin-top: 1vh;">
+                        <input type="checkbox" id="billingCheckbox" name="billingCheckbox" formControlName="billingCheckbox" (change)="onBillingCheckboxClick()">
+                        <label for="billingCheckbox">Fatura adresi ile Kargo aynı</label>
+                      </div>
+                    </form>
+                  
+                    <form [formGroup]="billingAddressForm" *ngIf="!isBillingAddressSame">
+                      <div class="billing-address">
+                        <!-- Visible Billing Address Field -->
+                        <div class="form-group">
+                          <label for="billingaddress">Fatura Adresi</label>
+                          <input type="text" id="billingaddress" name="billingaddress" formControlName="billingaddress" maxlength="100" required>
+                        </div>
+                  
+                        <!-- Hidden Static Fields for Billing (City, District, ZIP) -->
+                        <input type="hidden" formControlName="select" value="Ankara">
+                        <input type="hidden" formControlName="selectstate" value="Çankaya">
+                        <input type="hidden" formControlName="zip" value="06500">
+                      </div>
+                    </form>
+                  </div>
+                  
+                </div>
+    
+
+
+                <div class="modal" *ngIf="showPaymentModal">
+                  <div class="wrapper">
+                    <span class="close" (click)="togglePaymentModal()">&times;</span>
+                    <h1>Ödeme Bilgileri</h1>
+                    <div class="credit-card" id="card">
+                      <div class="card-front">
+                        <div class="branding">
+                          <img src="assets\img\byco\bycologo.png" class="chip-img"/>
+                        </div>
+                        <div class="card-number">
+                          <div>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                          </div>
+                          <div>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                          </div>
+                          <div>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                          </div>
+                          <div>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                            <span class="card-number-display">_</span>
+                          </div>
+                        </div>
+                        <div class="details">
+                          <div>
+                            <span>Kart Sahibi</span>
+                            <span id="card-holder-name">Adınız</span>
+                          </div>
+                          <div id="expirybox">
+                            <span>SKT</span>
+                            <span id="displayvalidity">06/28</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-back">
+                        <div class="black-strip"></div>
+                        <div class="white-strip">
+                          <span>CVV</span>
+                          <div id="cvv-display"></div>
+                        </div>
+                        <img src="assets\img\byco\bycologo.png" class="visa-logo"/>
+                      </div>
+                    </div>
+                    <form id="card-form" [formGroup]="paymentForm" (click)="onCVVnotfocused()"
+                          (ngSubmit)="updatePaymentInfo()">
+                      <label for="ccn">Kart Numarası</label>
+                      <input type="number" id="ccn" name="ccn" formControlName="ccn" placeholder="1234 1234 1234 1234"
+                             value="{{myUserObject.ccn}}" (input)="onNumberChange()"/>
+                      <label for="cardholder">Kart Sahibinin İsmi</label>
+                      <input type="text" id="cardholder" name="cardholder" formControlName="cardholder"
+                             placeholder="Kart Sahibinin Adı Soyadı" value="{{myUserObject.cardholder}}"
+                             (input)="onCardNameChange()"/>
+                      <div class="date-cvv">
+                        <div>
+                          <label for="validity">Son Kullanma Tarihi</label>
+                          <input type="text" id="validity" name="validity" formControlName="validity"
+                                 placeholder="AA/YY" maxlength="5" value="{{this.validity}}"
+                                 (input)="validateExpiryDate()"/>
+                        </div>
+                        <div>
+                          <label for="cvv">CVV</label>
+                          <input type="number" id="cvv" name="cvv" formControlName="cvv" placeholder="***"
+                                 value="{{this.cvv}}" (click)="onCVVclick()" (input)="onCVVChange()"
+                                 maxlength="4"/>
+                        </div>
+                      </div>
+                      <button type="submit" id="submit-payment-btn" name="submit-payment-btn"
+                              (click)="odemeYap()">
+                        Ödemeyi Onayla
+                      </button>
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-lg-5">
+                <!-- checkout place order -->
+                <div class="tp-checkout-place white-bg">
+                  <h3 class="tp-checkout-place-title">Siparişiniz</h3>
+
+                  <div class="tp-order-info-list">
+                    <ul>
+
+                      <!-- header -->
+                      <li class="tp-order-info-list-header">
+                        <h4>Ürün</h4>
+                        <h4>Fiyat</h4>
+                      </li>
+
+                      <!-- item list -->
+                      <li *ngFor="let item of cartService.getCartProducts()" class="tp-order-info-list-desc">
+                        <p>{{ item.ad }} <span> x {{ item.orderQuantity }}</span></p>
+                        <span *ngIf="item.indirim > 0; else noDiscount">
+                          {{ (item.fiyat - (item.fiyat * item.indirim / 100)).toFixed(2) }} TL
+                        </span>
+                        <ng-template #noDiscount>
+                          <span>{{ item.fiyat.toFixed(2) }} TL</span>
+                        </ng-template>
+                      </li>
+
+                      <!-- subtotal -->
+                      <li class="tp-order-info-list-subtotal">
+                        <span>Ara Toplam</span>
+                        <span>{{ cartService.totalPriceQuantity().total.toFixed(2) }} TL</span>
+                      </li>
+
+                      <!-- shipping -->
+                      <li class="tp-order-info-list-shipping">
+                        <span>İndirim</span>
+                        <div class="tp-order-info-list-shipping-item d-flex flex-column align-items-end">
+                          <span>
+                            <span>{{ discount }} TL</span>
+                          </span>
+                          <!-- <span>
+                            <input id="local_pickup" type="radio" name="shipping">
+                            <label (click)="handleShippingCost(25)" for="local_pickup">Local pickup:
+                              <span>$25.00</span></label>
+                          </span>
+                          <span>
+                            <input id="free_shipping" type="radio" name="shipping">
+                            <label (click)="handleShippingCost('free')" for="free_shipping">Free shipping</label>
+                          </span> -->
+                        </div>
+                      </li>
+                      <li>
+                        <span>Kargo Ücreti</span>
+                        <span>{{ shipCost }} TL</span>
+                      </li>
+                      <!-- total -->
+                      <li class="tp-order-info-list-total">
+                        <span>Toplam</span>
+                        <span>
+                          {{ (cartService.totalPriceQuantity().total - discount + shipCost).toFixed(2) }} TL
+                        </span>
+                      </li>
+
+
+                      <li class="tp-order-info-list-total">
+                        <input type="checkbox" id="termsCheckbox" (click)="onCheckboxClick($event)"
+                               formControlName="usePolicy">
+                        <label for="termsCheckbox">
+                          <span (click)="togglePolicyModal()"
+                                style="cursor: pointer; text-decoration: underline;">Kullanım Koşullarını</span> Kabul
+                          Ediyorum
+                        </label>
+                      </li>
+
+                    </ul>
+                  </div>
+                  <!-- <div class="tp-checkout-payment">
+                    <div class="tp-checkout-payment-item">
+                      <input type="radio" id="back_transfer" name="payment">
+                      <label (click)="handlePayment('bank')" for="back_transfer"
+                        data-bs-toggle="direct-bank-transfer">Direct Bank Transfer</label>
+                      <div *ngIf="payment_name === 'bank'" class="tp-checkout-payment-desc direct-bank-transfer">
+                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment
+                          reference. Your order will not be shipped until the funds have cleared in our account.</p>
+                      </div>
+                    </div>
+                    <div class="tp-checkout-payment-item">
+                      <input type="radio" id="cheque_payment" name="payment">
+                      <label (click)="handlePayment('cheque')" for="cheque_payment">Cheque Payment</label>
+                      <div *ngIf="payment_name === 'cheque'" class="tp-checkout-payment-desc cheque-payment">
+                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment
+                          reference. Your order will not be shipped until the funds have cleared in our account.</p>
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="tp-checkout-btn-wrapper">
+                    <button type="button" class="tp-checkout-btn w-100" (click)="nextStep()">
+                        {{ nextButtonText }}
+                    </button>
+                  </div>                
+                  <div class="tp-checkout-btn-wrapper">
+                    <button type="submit" id="prevBtn" class="tp-checkout-btn w-100" (click)="previousStep()">
+                      {{ previousButtonText }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+  <!-- checkout area end -->
+
+</main>
+
+<!--
+<div class="modal" *ngIf="showPaymentModal">
+    <div class="wrapper">
+      <span class="close" (click)="togglePaymentModal()">&times;</span>
+      <h1>Ödeme Bilgileri</h1>
+      <div class="credit-card" id="card">
+        <div class="card-front">
+          <div class="branding">
+            <img src="assets\img\byco\bycologo.png" class="chip-img" />
+          </div>
+          <div class="card-number">
+            <div>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+            </div>
+            <div>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+            </div>
+            <div>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+            </div>
+            <div>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+              <span class="card-number-display">_</span>
+            </div>
+          </div>
+          <div class="details">
+            <div>
+              <span>Kart Sahibi</span>
+              <span id="card-holder-name">Adınız</span>
+            </div>
+            <div id="expirybox">
+              <span>SKT</span>
+              <span id="displayvalidity">06/28</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="black-strip"></div>
+          <div class="white-strip">
+            <span>CVV</span>
+            <div id="cvv-display"></div>
+          </div>
+          <img src="assets\img\byco\bycologo.png" class="visa-logo" />
+        </div>
+      </div>
+      <form id="card-form" [formGroup]="paymentForm" (click)="onCVVnotfocused()" (ngSubmit)="updatePaymentInfo()">
+        <label for="ccn">Kart Numarası</label>
+        <input type="number" id="ccn" name="ccn" formControlName="ccn" placeholder="1234 1234 1234 1234" value="{{myObject.ccn}}" (input)="onNumberChange()"/>
+        <label for="cardholder">Kart Sahibinin İsmi</label>
+        <input type="text" id="cardholder" name="cardholder" formControlName="cardholder" placeholder="Kart Sahibinin Adı Soyadı" value="{{myObject.cardholder}}" (input)="onCardNameChange()"/>
+        <div class="date-cvv">
+          <div>
+            <label for="validity">Son Kullanma Tarihi</label>
+            <input type="text" id="validity" name="validity" formControlName="validity" placeholder="AA/YY" maxlength="5" value="{{myObject.validity}}" (input)="validateExpiryDate()"/>
+          </div>
+          <div>
+            <label for="cvv">CVV</label>
+            <input type="number" id="cvv" name="cvv" formControlName="cvv" placeholder="***" value="{{myObject.cvv}}" (click)="onCVVclick()" (input)="onCVVChange()"/>
+          </div>
+        </div>
+        <button type="submit" id="submit-payment-btn" name="submit-payment-btn"
+        (click)="odemeYap(ccn?.value, cardholder?.value, validity?.value, cvv?.value, billingadress?.value, select?.value, selectstate?.value, zip?.value)">Ödemeyi Onayla</button>
+      </form>
+    </div>
+    -->
+
+<!--
+<form action="/submit-payment" method="POST">
+  <div class="form-group">
+    <label for="cardholder-name">Kart Sahibinin İsmi</label>
+    <input type="text" id="cardholder-name" name="cardholder-name" maxlength="40" placeholder="Samet Can" required>
+  </div>
+  <div class="form-group">
+    <label for="card-number">Kart Numarası</label>
+    <input id="ccn" name="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19"
+      placeholder="XXXX XXXX XXXX XXXX" required (change)="checkccn()">
+  </div>
+  <div class="form-group">
+    <label for="expiry-date">Son Kullanma Tarihi</label>
+    <input type="datetime" id="expiry-date" name="expiry-date" pattern="(0[1-9]|1[0-2])\/\d{2}" placeholder="AA/YY" (change)="checkexpiry()"
+      required>
+
+    <label for="cvv">CVC / CVV</label>
+    <input type="text" id="cvv" name="cvv" pattern="\d{3,4}" maxlength="4" placeholder="123" required>
+  </div>
+  <div class="form-group">
+    <label for="billingadress">Fatura Adresi</label>
+    <input type="text" id="billingadress" name="billingadress" maxlength="100" required>
+  </div>
+  <div class="form-group">
+    <label for="select">Şehir</label>
+    <select id="select" name="select" (click)="fnSehirler()">
+      <option value="" disabled selected>Seçiniz</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="selectstate">İlçe</label>
+    <select id="selectstate" name="selectstate">
+      <option value="" disabled selected>Seçiniz</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="zip">ZIP/Posta Kodu</label>
+    <input type="number" id="zip" name="zip" pattern="\d{5}" maxlength="5" placeholder="34848" (change)="checkzip()" required>
+  </div>
+  <button type="submit" id="submit-payment-btn" (click)="odemeYap()">Ödemeyi Onayla</button>
+</form>
+
+</div>-->
+
+
+<style>
+  .modal {
+    display: flex;
+    position: fixed;
+    z-index: 90;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* payment model styles */
+
+  .wrapper {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: #ffffff;
+    width: 500px;
+    padding: 3em;
+    border-radius: 1em;
+    perspective: 800px;
+  }
+
+  .credit-card {
+    position: relative;
+    width: 350px;
+    height: 220px;
+    margin: auto;
+    transform-style: preserve-3d;
+    transition: 0.3s;
+  }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background: linear-gradient(#33a4f8, #206df9);
+    border-radius: 1em;
+    backface-visibility: hidden;
+  }
+
+  .card-front {
+    padding: 2em 1em;
+  }
+
+  .branding {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .branding img {
+    width: 75px;
+    height: auto;
+  }
+
+  .card-back {
+    position: absolute;
+    transform: rotateY(180deg);
+  }
+
+  .card-number {
+    color: #ffffff;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2em;
+    margin-top: 2em;
+  }
+
+  .details {
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5em;
+    font-size: 1em;
+  }
+
+  .details span {
+    display: block;
+  }
+
+  .details #card-holder-name {
+    text-transform: uppercase;
+    font-size: large;
+  }
+
+  .card-back .black-strip {
+    position: relative;
+    background-color: #000000;
+    height: 50px;
+    top: 2em;
+  }
+
+  .card-back .white-strip {
+    top: 3em;
+    position: relative;
+    text-align: right;
+  }
+
+  .card-back .white-strip span {
+    margin-right: 1em;
+  }
+
+  .card-back .white-strip div {
+    height: 30px;
+    background-color: #ffffff;
+    margin-top: 0.5em;
+  }
+
+  .card-back .visa-logo {
+    position: absolute;
+    width: 100px;
+    margin-top: 4em;
+    right: 1em;
+  }
+
+  #card-form {
+    margin-top: 2em;
+  }
+
+  #card-form label,
+  input {
+    display: block;
+  }
+
+  #card-form label {
+    margin-bottom: 0.5em;
+    font-weight: 600;
+  }
+
+  #card-form input {
+    width: 100%;
+    border: 1px solid #000000;
+    padding: 1em 0.5em;
+    border-radius: 0.5em;
+  }
+
+  #card-form input:not(:last-child) {
+    margin-bottom: 1em;
+  }
+
+  #card-form .date-cvv {
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+  /*
+    .payment-modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 25%;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .container-fluid {
+      margin-top: 15px;
+    }
+  */
+  .form-group {
+    margin-bottom: 1rem;
+    width: 100%;
+    justify-content: center;
+    justify-items: center;
+  }
+
+
+  /*#expiry-date,*/
+  .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 0;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+
+  .form-group option {
+    font-size: 2vh;
+  }
+
+  /*
+  #expiry-date,
+  #cvv,
+  #zip {
+    width: 20%;
+    padding: 12px;
+    margin: 10px;
+  }
+    */
+
+  #submit-payment-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  #submit-payment-btn:hover {
+    opacity: 0.5;
+  }
+
+
+</style>
+
+<div class="modal" *ngIf="showPolicyModal">
+  <div class="modal-content">
+    <span class="close" (click)="togglePolicyModal()">&times;</span>
+    <h3>GİZLİLİK POLİTİKASI</h3>
+    <p>
+      <br>BYCO Mühendislik Elektrik Taahhüt Ve İnşaat Ticaret Anonim Şirketi, müşterilerine en iyi, kusursuz hizmeti
+      verebilmek ve kanuni yükümlülükleri eksiksiz yerine getirmek adına bazı kişisel bilgilerinizi (isim, yaş, ilgi
+      alanlarınız, e-posta vb.) sadece şipariş sırasında sizlerden talep etmektedir.
+      <br>BYCO Mühendislik Elektrik Taahhüt Ve İnşaat Ticaret Anonim Şirketi olarak 6698 sayılı Kişisel Verilerin
+      Korunması Kanunu (“KVKK”) ve ilgili mevzuat ve yasal düzenlemelerden doğan işlemlerimiz çerçevesinde kişisel
+      verilerinizin işlenmesi, depolanması/saklanması ve aktarımı ile ilgili veri maliklerini aydınlatmak amacıyla işbu
+      Kişisel Verilerin İşlenmesi Gizlilik Politikası ve Aydınlatma Metni’ni size sunmaktayız.
+      <br>KVKK ve ilgili mevzuat çerçevesinde, kişisel verilerinizle ilgili olarak aşağıdaki haklara sahipsiniz;
+      <br>Kişisel verilerinizin işlenip işlenmediğini öğrenme,
+      <br>Kişisel verileriniz işlenmişse, hangi kişisel verilerinizin işlendiğini ve bu verilerin işlenme amaçlarını
+      öğrenme,
+      <br>Kişisel verilerinizin işlenme amacına uygun kullanılıp kullanılmadığını öğrenme,
+      <br>Yurt içinde veya yurt dışında kişisel verilerinizin aktarıldığı üçüncü kişileri bilme,
+      <br>Kişisel verilerinizin eksik veya yanlış işlenmiş olması halinde bunların düzeltilmesini talep etme,
+      <br>KVKK mevzuatında öngörülen şartlar çerçevesinde kişisel verilerinizin silinmesini veya yok edilmesini isteme,
+      <br>Eksik veya yanlış verilerin düzeltilmesi, kişisel verilerinizin silinmesi veya yok edilmesi talebinde
+      bulunduğunuzda, bu durumun kişisel verilerinizi aktardığımız üçüncü kişilere bildirilmesini isteme,
+      <br>Kişisel verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle kişinin kendisi aleyhine
+      bir sonucun ortaya çıkmasına itiraz etme,
+      <br>Kişisel verilerin kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız halinde bu zararın giderilmesini
+      talep etme.
+      <br>Bu hakları kullanmak için ilgili taleplerinizi veri sorumlusuna yöneltebilirsiniz. Veri sorumlusu, talebinizi
+      aldıktan sonra gerekli süre içinde talebinizi değerlendirip size geri dönüş yapmakla yükümlüdür.
+      <br>Bu bilgiler, münhasıran kampanya çalışmaları, müşteri profillerine yönelik özel promosyon faaliyetlerinin
+      kurgulanması ve istenmeyen e-postaların iletilmemesine yönelik müşteri "sınıflandırma” çalışmalarında sadece BYCO
+      Mühendislik Elektrik Taahhüt Ve İnşaat Ticaret Anonim Şirketi bünyesinde anonim olarak toplanmakla birlikte ilgili
+      yasal mevzuat dahilinde müşteri tarafından gerekli izin ve icazet usulüne uygun olarak verildi ise verilen onayın
+      kapsamına uygun olarak ticari amaçla kullanmamakta ve hiçbir şekilde bu bilgilerin izin kapsamı dışında 3. Kişiler
+      ile paylaşımını yapmamaktadır.
+      <br>BYCO Mühendislik Elektrik Taahhüt Ve İnşaat Ticaret Anonim Şirketi, e-posta adresleri ve üyelik formlarında
+      istediği kişisel bilgilerin haricinde site kullanımı sırasında izlediği, ziyaretçi hareket ve tercihlerini analiz
+      ederek yorumlamaktadır. Kişisel bilgiler içermeyen bu istatistiksel veriler, BYCO Mühendislik Elektrik Taahhüt Ve
+      İnşaat Ticaret Anonim Şirketi müşterilerine daha özel ve etkin bir alışveriş deneyimi yaşatmak amacıyla BYCO
+      Mühendislik Elektrik Taahhüt Ve İnşaat Ticaret Anonim Şirketi tarafından analiz edilmekte ve kullanılmaktadır.
+      <br>Müşteri bilgileri, ancak resmi makamlarca usulü dairesinde bu bilgilerin talep edilmesi halinde ve
+      yürürlükteki emredici mevzuat hükümleri gereğince resmi makamlara açıklama yapmak zorunda olduğu durumlarda resmi
+      makamlara açıklanabilecektir. Müşterinin sisteme girdiği tüm bilgilere sadece Müşteri ulaşabilmekte ve bu
+      bilgileri sadece Müşteri değiştirebilmektedir.
+      <br>Ödeme sayfasında istenen kredi kartı bilgileriniz, siteden alışveriş yapan siz değerli müşterilerimizin
+      güvenliğini en üst seviyede tutmak amacıyla hiçbir şekilde bizim bünyemize girişi sağlanmayacaktır veya ona hizmet
+      veren güvenli ödeme yöntemlerini sağlayan bankacılık şirketinde yapılan sözleşme dahilinde hassasiyetle muhafaza
+      edilmektedir. Bu şekilde ödemeye yönelik tüm işlemlerin T. Garanti Bankası A.Ş./Garanti BBVA kendi arayüzü
+      üzerinden banka ve bilgisayarınız arasında gerçekleşmesi sağlanmaktadır.
+      <br>Ayrıca OprenSSL ve Natro tarafından sağlanan Secure Socket Layer sertifikamız sayesinde kişisel bilgileriniz
+      şifrelenmektedir.
+
+      <br> BYCO Mühendislik Elektrik Taahhüt Ve İnşaat Ticaret Anonim Şirketi
+      <br> Pazartesi – Cuma 09.00-18.00 Cumartesi 09.00-14.00
+      <br> 0216 356 29 26/30 Pbx // Mail : muhasebe@byco.com.tr
+      <br> Küçükbakkalköy Mah. KocaSinan Cad. Denizatı Apt. No:8/10A Ataşehir/ İstanbul
+
+    </p>
+
+
+    <h3>MESAFELİ SATIŞ SÖZLEŞMESİ</h3>
+
+    <h4>TARAFLAR</h4>
+
+    İşbu Mesafeli Satış Sözleşmesi ("Sözleşme") Küçükbakkalköy Mah. KocaSinan Cad. Denizatı Apt. No:8/10A Ataşehir/
+    İstanbul adresinde faaliyette bulunan BYCO Mühendislik Elektrik Taahhüt Ve İnşaat Ticaret Anonim Şirketi
+    Şirketi ("Satıcı") ve hizmetlerini/ürünlerini www.byco.com.tr alan adlı internet sitesi üzerinden satın alan kişi
+    ("Alıcı") aşağıda bilgileri verilen Satıcı ve Alıcı arasında elektronik ortamda imzalanmış kabul edilmektedir.
+    Taraflar, işbu Sözleşme'nin tamamını okuduklarını, içeriğini bütünü ile anladıklarını ve tüm hükümlerini
+    onayladıklarını kabul, beyan ve taahhüt eder.
+
+    <h6>SATICI'NIN BİLGİLERİ:</h6>
+
+    <br>Satıcının Ticaret Unvanı / Adı ve Soyadı : BYCO MÜHENDİSLİK ELEKTRİK TAAHHÜT VE İNŞAAT TİCARET ANONİM ŞİRKETİ
+    <br>Satıcının Adresi : Küçükbakkalköy Mahallesi Koca Sinan Cad. Denizatı Apt. No:8/10A Ataşehir İstanbul
+    <br>Satıcının Mersis Numarası : 0191057784844479
+    <br>Satıcının Vergi Kimlik Numarası : 1910577848
+    <br>Satıcının Telefonu : 0216 356 29 26
+    <br>Satıcı KEP ve E-posta Bilgileri : byco@hs03.kep.tr
+
+
+    <h6>ALICI'NIN BİLGİLERİ:</h6>
+
+    <br>Teslim Edilecek Kişi : {{ fullName }}
+    <br>Teslimat Adresi : {{ myUserObject.adres }}
+    <br>Telefon : {{ myUserObject.telefon }}
+    <br>E-posta/Kullanıcı Adı : {{ myUserObject.email }}
+    <br>
+    <br>İşbu sözleşme dahilinde gerektiği takdirde Satıcı ve Alıcı tek başına "Taraf", birlikte "Taraflar" olarak
+    anılabilecektir.
+    Alıcı, işbu ürün ve hizmet satın alımını yaparak, Sözleşme'nin tamamını okuduğunu, içeriğini bütünü ile kavradığını
+    ve tüm hükümlerini onayladığını kabul, beyan ve taahhüt eder. Aynı şekilde Satıcı de aşağıdaki hususları Satıcı'ya
+    beyan ve taahhüt eder. Bu nedenle, hizmet satın alınırken Alıcı tarafından verilmiş olan bilgilerinin doğruluğu
+    Alıcı tarafından taahhüt edilmektedir.
+    Tabii, işbu sözleşme metnini daha detaylı ve düzenli bir şekilde yeniden yazalım:
+
+    <h4>SÖZLEŞME'NİN KURULMASI</h4>
+
+    ALICI, işbu Sözleşme'yi okuduğunu, anladığını, haklarının ve yükümlülüklerinin bilincinde olduğunu kabul eder.
+
+    TARAFLAR, Sözleşme ile kararlaştırılan edimler arasında herhangi bir oransızlık bulunmadığını ve karşılıklı
+    edimlerin işin niteliğine uygun olduğunu, Sözleşme konusu işlemler kapsamında herhangi bir tecrübesizliklerinin
+    bulunmadığını kabul ederler.
+
+    ALICI, Sözleşme kapsamında yer alan işlemlerin kendi menfaatine uygun olduğu konusunda tam bir kanaate varmıştır ve
+    tüm şartlara kendi özgür iradesi ile, hiçbir güçlük veya sıkıntı içinde olmadan, düşünerek, isteyerek ve bilerek
+    uymayı kabul eder.
+
+    TARAFLAR, Sözleşme hükümlerinin haksız şart sayılabilecek bir özellik taşımadığını, menfaatler dengesi bakımından
+    bir haksızlık olmadığını kabul ederler.
+
+    İŞBU SÖZLEŞME HÜKÜMLERİ, Tüketici Sözleşmeleri Yönetmeliği hükümleri uyarınca herhangi bir haksız şart
+    içermemektedir. Hükümler dürüstlük ve iyi niyet kuralına aykırılık teşkil etmemekte olup tüketiciyi koruma
+    mevzuatına uygun olarak hazırlanmıştır.
+
+    İŞBU SÖZLEŞME HÜKÜMLERİ, Türk Borçlar Kanunu hükümleri de dikkate alınarak hazırlanmıştır. Türk Borçlar Kanunu'nun
+    21. maddesinde öngörülen bağlayıcılık ve içerik denetimi alıcı tarafından yapılmıştır. İşbu sözleşme hükümlerinden
+    hiçbiri işbu Sözleşme'nin niteliğine ve işin özelliğine yabancı (şaşırtıcı şartlar) nitelik taşımaz. İşbu Sözleşme
+    hükümleri açık ve anlaşılır bir şekilde yazılmış olup birden çok anlamı ifade etmemektedir.
+
+    <h4>SÖZLEŞME'NİN KONUSU VE KAPSAMI</h4>
+
+    İşbu Sözleşme'nin konusu, Alıcı'nın Satıcı'ya ait www.byco.com.tr alan adlı internet sitesi ("Site") üzerinden
+    elektronik ortamda siparişini yaptığı aşağıda nitelikleri ve satış fiyatı belirtilen ürünün satışı ve teslimi ile
+    ilgili olarak 6502 sayılı Tüketicinin Korunması Hakkındaki Kanun ve Mesafeli Sözleşmeler Yönetmeliği gereğince
+    Taraflar'ın hak ve yükümlülüklerinin belirlenmesinden ibarettir.
+
+    <h4>**SÖZLEŞME KONUSU MAL VEYA HİZMETİN TEMEL NİTELİKLERİ**</h4>
+
+    İşbu Sözleşme konusu ürünün temel nitelikleri, satış bedeli, teslimat ve ödeme koşulları aşağıdaki gibidir:
+
+    <style>
+      .product-table {
+        width: 100%;
+        border-collapse: collapse;
+        /* Tablo çizgilerinin birleşmesi için */
+      }
+
+      .product-table th,
+      .product-table td {
+        border: 1px solid #ddd;
+        /* Hücreler arası kenarlık */
+        padding: 8px;
+        /* Hücre içi boşluk */
+        text-align: left;
+        /* Metin hizalaması */
+      }
+
+      .product-table th {
+        background-color: #f4f4f4;
+        /* Başlık arkaplan rengi */
+        color: #333;
+        /* Başlık yazı rengi */
+      }
+
+      .product-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      /* Çift satırlar için arkaplan rengi */
+      .product-table tr:hover {
+        background-color: #e9e9e9;
+      }
+
+      /* Satır üzerine gelindiğinde arkaplan rengi */
+    </style>
+    <table class="product-table">
+      <thead>
+      <tr>
+        <th>Ürün Adı</th>
+        <th>Açıklama</th>
+        <th>Miktar</th>
+        <th>Fiyat</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of cartService.getCartProducts()">
+        <td>{{ item.ad }}</td>
+        <td>{{ item.aciklama }}</td>
+        <td>x {{ item.orderQuantity }}</td>
+        <td>
+          <ng-container *ngIf="item.indirim > 0; else noDiscount">
+            {{ (item.fiyat- (item.fiyat * item.indirim / 100)).toFixed(2) }} TL
+          </ng-container>
+          <ng-template #noDiscount>
+            {{ item.fiyat.toFixed(2) }} TL
+          </ng-template>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+    <h4>ÖDEME VE TESLİMAT ŞARTLARI</h4>
+
+    <h6>1. Ödeme Detayları</h6>
+
+    <br>Kargo Hariç Toplam Ürün Bedeli: {{ (cartService.totalPriceQuantity().total - discount).toFixed(2) }} TRY
+
+    <br>Kargo Ücreti: 120 TRY
+
+    <br>Kargo ve Tüm Vergiler Dahil Toplam Ürün Bedeli: {{
+      (cartService.totalPriceQuantity().total -
+        discount + 120).toFixed(2)
+    }}
+
+    <br>Ödeme Şekli: Ödemeye yönelik tüm işlemlerin T. Garanti Bankası A.Ş./Garanti BBVA kendi arayüzü üzerinden banka
+    ve bilgisayarınız arasında gerçekleşmesi sağlanmaktadır
+
+    <br>Ödeme Şekli Açıklaması: Yukarıda belirtilen toplam ürün bedeli, Alıcı tarafından T. Garanti Bankası A.Ş./Garanti
+    BBVA aracılığıyla Satıcı'ya ödenecektir.
+
+    <h6>2. Teslimat Detayları</h6>
+
+    <br>Teslimat Adresi: {{ myUserObject.adres }}
+    <br>Teslim Edilecek Kişi: {{ fullName }}
+    <h6>3. Teslimat Koşulları</h6>
+    Sözleşme konusu ürün/ürünler, siparişin Satıcı'ya ulaşmasını takip eden 30 (otuz) gün içinde Alıcı'nın teslimat
+    adresine teslim edilecektir. Teslim süresi, Alıcı'nın teslimat adresinin uzaklığına ve taşıyıcı firmanın hizmet
+    verdiği koşullara bağlı olarak değişiklik gösterebilir.
+
+    <h6>4. Taşıyıcı Firma Bilgileri</h6>
+
+    <br>Taşıyıcı Firma: Yurtiçi Kargo
+    <br>Kargo Bilgisi: Kargo bilgileri otomatik olarak müşteriye gösterilecektir.
+    <h6>5. Teslimat Adresi ve Kişi Bilgileri</h6>
+    <br>Teslimat Adresi: {{ myUserObject.adres }}
+    <br>Teslim Edilecek Kişi: {{ fullName }}
+    <h6>6. Teslimat Süresi</h6>
+    Sözleşme konusu ürün/hizmet, siparişin Satıcı'ya ulaşmasını takip eden 30 (otuz) günlük yasal süreyi aşmamak koşulu
+    ile her bir ürün için Alıcı'nın belirtilen teslimat adresine veya gösterdiği adrese 30 günlük süre içinde teslim
+    edilecektir.
+    Yukarıda belirtilen toplam ürün bedeli, BYCO Mühendislik Elektrik Taahhüt Ve İnşaat Ticaret Anonim Şirketi
+    tarafından Alıcı'dan tahsil edilmektedir
+
+    <h4>TESLİMAT</h4>
+
+    Teslimat Süresi ve Şartları
+    Sözleşme konusu ürün, Alıcı'nın isteği veya kişisel ihtiyaçları doğrultusunda hazırlanan bir ürün olmadıkça yasal 30
+    (otuz) günlük süreyi aşmamak koşulu ile her bir ürün için Alıcı'nın yerleşim yerinin uzaklığına bağlı olarak ön
+    bilgilendirme formunda belirtilen süre içinde Alıcı'ya veya gösterdiği adrese teslim edilir. Ürün, siparişin
+    Satıcı'ya ulaşmasını takip eden 30 günlük yasal süre içinde teslim edilir.
+
+    Ödeme Şartı ve Teslimatın Koşulları
+    Şüpheye mahal vermemek kaydıyla, işbu Sözleşme'ye konu ürünün teslimatı için Alıcı tarafından elektronik ortamda
+    teyit edilmiş olması ve ürün(lerin) bedelinin Alıcı'nın tercih ettiği ödeme şekli ile tam ve eksiksiz olarak ödenmiş
+    olması şarttır. Ürün bedeli ödenmez, eksik ödenir veya ödeme banka kayıtlarında iptal edilirse, Satıcı ürünün
+    teslimi yükümlülüğünden kurtulmuş kabul edilir.
+
+    Ürünün Teslim Edilemeyeceği Durumlar
+    Sipariş konusu mal ya da hizmet ediminin yerine getirilmesinin imkansızlaştığı hallerde, Satıcı bu durumu öğrendiği
+    tarihten itibaren 3 (üç) gün içinde Alıcı'ya yazılı olarak veya kalıcı veri sağlayıcısı ile bildirir ve varsa
+    teslimat masrafları da dâhil olmak üzere tahsil edilen tüm ödemeleri bildirim tarihinden itibaren en geç 14 (on
+    dört) gün içinde Alıcı'ya iade eder.
+
+    <h4>ALICI'NIN BEYAN VE TAAHHÜTLERİ</h4>
+
+    Alıcı, Site'de yer alan Sözleşme konusu mal veya hizmetin temel nitelikleri, satış fiyatı ve ödeme şekli ile
+    teslimat ve kargo bedeline ilişkin olarak Satıcı tarafından yüklenen ön bilgileri okuyup bilgi sahibi olduğunu,
+    elektronik ortamda gerekli teyidi verdiğini ve Site üzerinden siparişi onaylaması ile ÖDEME YÜKÜMLÜLÜĞÜ altına
+    girdiğinin bilincinde olduğunu, satış bedelinin ödeme işlemi için bilgilerini girmiş olduğu kredi kartından/banka
+    kartından tahsil edileceğini kabul, beyan ve taahhüt eder.
+
+    Alıcı, işbu Sözleşme'yi ve Ön Bilgilendirme Formunu elektronik ortamda teyit etmekle mesafeli sözleşmelerin akdinden
+    önce Satıcı tarafından Alıcı'ya verilmesi gereken adres, siparişi verilen mal veya hizmete ait temel özellikler, mal
+    veya hizmetin vergiler dahil fiyatı, ödeme ve teslimat ile teslimat fiyatı bilgilerini de doğru ve eksiksiz olarak
+    edindiğini teyit etmiş olur.
+
+    Mal veya hizmetin tesliminden sonra Alıcı'ya ait kredi kartının Alıcı'nın kusurundan kaynaklanmayan bir şekilde
+    yetkisiz kişilerce haksız veya hukuka aykırı olarak kullanılması nedeni ile ilgili banka veya finans kuruluşunun mal
+    veya hizmetin bedelini Satıcı'ya ödememesi halinde, Alıcı kendisine teslim edilmiş olması kaydıyla mal veya hizmeti
+    3 (üç) gün içinde Satıcı'ya iade etmekle yükümlüdür. Bu durumda teslimat giderleri Alıcı'ya aittir.
+
+    Sözleşme konusu mal veya hizmet, Alıcı'dan başka bir kişiye teslim edilecekse, teslim edilecek kişinin teslimatı
+    kabul etmemesinden Satıcı sorumlu tutulamaz. Alıcı, siparişin teslimini talep ettiği adreste bulunmaz ise siparişi
+    kesinlikle başka bir adrese bırakılmayacaktır. Bu durumda Alıcı kendisinin bulunmadığı bir adrese sipariş vermiş
+    olması sebebiyle doğacak kanuni yükümlülükleri kabul etmek durumundadır.
+
+    Sözleşme konusu ürün, Alıcı'dan başka bir kişi/kuruluşa teslim edilecek ise, teslim edilecek kişi/kuruluşun
+    teslimatı kabul etmemesinden Satıcı sorumlu tutulamaz. Satıcı, Sözleşme konusu ürünün sağlam, eksiksiz, siparişte
+    belirtilen niteliklere uygun olarak teslim edilmesinden sorumludur.
+
+    Haklı bir sebebe dayanmak şartıyla Satıcı, Sözleşme'den doğan ifa yükümlülüğünün süresi dolmadan ve Alıcı'yı
+    bilgilendirmek ve açıkça onayını almak şartıyla, Alıcı'ya eşit kalite ve fiyatta mal veya hizmet tedarik edebilir.
+
+    Sözleşme konusu ürünün teslimatı için işbu Sözleşme'nin elektronik ortamda teyit edilmesi ve Sözleşme konusu
+    siparişin bedelinin ödenmesi şarttır. Herhangi bir nedenle ürün bedeli ödenmez veya banka kayıtlarında iptal
+    edilirse, Satıcı işbu Sözleşme kapsamındaki ürün teslimi yükümlülüğünden kurtulmuş kabul edilir.
+
+    Satıcı, malın Alıcı veya Alıcı'nın belirlediği taşıyıcı dışında başka bir taşıyıcı ile teslim edilmesini talep
+    etmesi durumunda, malın ilgili taşıyıcıya tesliminden itibaren oluşabilecek kayıp veya hasardan sorumlu değildir.
+
+    Satıcı tarafından sunulan hizmet perakende satış kapsamında son kullanıcıya yöneliktir; Satıcı, Alıcı'nın yeniden
+    satış amacı bulunduğundan şüphe etmesi halinde işbu Sözleşme kurulmuş olsa dahi siparişi iptal etme ve ürünleri
+    teslim etmeme hakkını saklı tutar.
+
+    Alıcı, ürünü teslim almadan önce muayenesini yapmalı, olağan muayene ile tespit edilebilen ayıplı ve hasarlı ürünü
+    Satıcı yetkilisinden veya kargo şirketinden teslim almamalıdır. Alıcı, malı gözden geçirmeyi ihmal eder ve malı
+    teslim alırsa, ürünün sağlam ve hasarsız olduğunu kabul etmiş sayılır.
+    <h4>SATICI'NIN BEYAN VE TAAHHÜTLERİ</h4>
+
+    Satıcı, Sözleşme konusu mal veya hizmetin tüketici mevzuatına uygun olarak sağlam, eksiksiz, siparişte belirtilen
+    niteliklere uygun ve varsa garanti belgeleri ve kullanım kılavuzları ile Alıcı'ya teslim edilmesinden sorumludur.
+
+    Satıcı, haklı bir sebebe dayanmak ve Alıcı'yı bilgilendirmek ve açıkça onayını almak şartıyla Sözleşme'den doğan ifa
+    yükümlülüğünün süresi dolmadan Alıcı'ya eşit kalite ve fiyatta farklı bir ürün tedarik edebilir.
+
+    <h4>ALICI'NIN CAYMA HAKKI</h4>
+
+    Sözleşme'de düzenlenen diğer hükümler saklı kalmak kaydıyla, işbu 8. madde altında düzenlenen hüküm ve şartlar
+    yalnızca Alıcı'nın ilgili mevzuat kapsamında tüketici sıfatını haiz olması durumunda geçerli olacaktır.
+
+    6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği kapsamındaki tüketici sıfatını
+    haiz Alıcılar için cayma hakkı ve kullanımı:
+
+    Tüketici Alıcı; hizmet ifasına ilişkin sözleşmelerde sözleşmenin kurulduğu günden; mal satışına ilişkin mesafeli
+    sözleşmelerde, malı teslim aldığı tarihten itibaren 14 (on dört) gün içerisinde herhangi bir gerekçe göstermeksizin
+    ve cezai şart ödemeksizin sözleşmeden cayma hakkına sahiptir.
+
+    Cayma hakkının kullanıldığına dair bildirimin bu süre içinde yazılı olarak veya kalıcı veri saklayıcısı ile
+    Satıcı'ya yöneltilmiş olması yeterlidir. Cayma bildiriminin yapılabileceği Satıcı'ya ait iletişim bilgileri
+    aşağıdaki gibidir:
+
+    <br>Telefon: 0216 356 29 26
+    <br>Mail: info@byco.com.tr
+
+    <br>Alıcı, cayma hakkını kullanmak istediğinde ürünü, bu süre içinde Satıcı'ya iade etmekle yükümlüdür. İade işlemi
+    için gerekli koşullar ve prosedürler, Satıcı tarafından belirlenmiş olup, Alıcı bu koşulları yerine getirmekle
+    yükümlüdür.
+
+    Cayma hakkının kullanılması durumunda ürün bedeli, Alıcı tarafından Satıcı'ya iade edildikten sonra, Satıcı
+    tarafından yasal mevzuat çerçevesinde ve Alıcı'nın tercihine bağlı olarak iade edilir.
+
+    Yukarıda belirtilen metin, Satıcı'nın sorumluluklarını ve Alıcı'nın cayma hakkını daha ayrıntılı bir şekilde
+    açıklamaktadır. Her iki taraf için de netlik sağlamak amacıyla bu düzenlemelerin Sözleşme'nin her aşamasında göz
+    önünde bulundurulması önemlidir.
+    <br>Açık Adres: Küçükbakkalköy Mahallesi Koca Sinan Cad. Denizatı Apt. No:8/10A Ataşehir İstanbul
+    <br>Telefon: 0216 356 29 26
+    <br>E-posta: info@byco.com.tr
+    <br>Cayma hakkının kullanıldığına ilişkin bildirimin Satıcı'ya ulaşmasına müteakip tüketici Alıcı
+    bilgilendirilecektir.
+    Satıcı, tüketici Alıcı'nın cayma hakkını kullandığına ilişkin bildirimin kendisine ulaştığı tarihten itibaren 14 (on
+    dört) gün içerisinde, varsa malın tüketici Alıcı'ya teslim masrafları da dahil olmak üzere tüketici Alıcı'nın ilgili
+    mal veya hizmete ilişkin Satıcı'ya yaptığı tüm ödemeleri, satın alırken kullanılan ödeme aracına uygun bir şekilde
+    ve tüketiciye herhangi bir masraf veya yükümlülük getirmeksizin tek seferde, tüketici Alıcı'ya iade edecektir.
+    Tüketici Alıcı'nın cayma hakkını kullanması halinde Satıcı'nın öngördüğü ürünü iade alacak olan kargo şirketi
+    Şirket'in anlaşmalı olduğu Yurtiçi Kargo. Cayma hakkının kullanılması halinde burada belirtilen kargo şirketi
+    aracılığıyla malın geri gönderilmesi durumunda tüketici Alıcı iadeye ilişkin masraflardan sorumlu tutulmaz. Tüketici
+    Alıcı'nın iade edeceği malı işbu Sözleşme'de belirtilen Satıcı'nın anlaşmalı kargo şirketi dışında bir kargo şirketi
+    ile göndermesi halinde, iade kargo masrafları ve malın kargo sürecinde uğrayacağı hasardan Satıcı sorumlu değildir.
+    İade için anlaşmalı olunan kargo firmasının tüketici Alıcı'nın bulunduğu yerde şubesinin olmaması durumunda Satıcı,
+    ilave hiçbir masraf talep etmeksizin iade edilmek istenen malın tüketiciden alınmasını sağlamakla yükümlüdür.
+
+    <h4>TÜKETİCİ ALICI'NIN CAYMA HAKKI VE İADE PROSEDÜRÜ</h4>
+
+    <h5>TÜKETİCİ ALICI'NIN CAYMA HAKKI:</h5>
+
+    Tüketici Alıcı, hizmet ifasına ilişkin sözleşmelerde sözleşmenin kurulduğu günden; mal satışına ilişkin mesafeli
+    sözleşmelerde, malı teslim aldığı tarihten itibaren 14 (on dört) gün içerisinde herhangi bir gerekçe göstermeksizin
+    ve cezai şart ödemeksizin sözleşmeden cayma hakkına sahiptir.
+
+    Cayma hakkının kullanıldığına dair bildirimin bu süre içinde Satıcı'ya yazılı olarak veya kalıcı veri saklayıcısı
+    ile ulaştırılması yeterlidir.
+
+    <h5>CAYMA HAKKININ KULLANIM ŞARTLARI:</h5>
+
+    Tüketici Alıcı, cayma süresi içinde malı, işleyişine, teknik özelliklerine ve kullanım talimatlarına uygun bir
+    şekilde kullanmalıdır. Aksi halde malda meydana gelen değişiklik ve bozulmalardan sorumludur.
+
+    Tüketici Alıcı'nın cayma hakkını kullanabilmesi için, malı Satıcı'ya geri göndermesi gerekmektedir. İadeye konu mal
+    ile birlikte malın faturası, kutusu, ambalajı, varsa standart aksesuarları ve hediye edilen diğer ürünlerin eksiksiz
+    ve hasarsız olarak Satıcı'ya iade edilmesi gerekmektedir.
+
+    <h5>İADE İŞLEMİ VE ÖDEME İADESİ:</h5>
+    Banka hesapları veya kredi kartları aracılığıyla ödenen sipariş bedellerinin iadesi ve tüketici Alıcı'nın
+    hesaplarına yansıması tamamen banka işlem süreci ile ilgili olduğundan, olası gecikmeler için Satıcı'nın müdahalede
+    bulunması mümkün değildir.
+    Tüketici Alıcı, malın iadesi sonrasında Satıcı tarafından yasal mevzuat çerçevesinde ve Alıcı'nın tercihine bağlı
+    olarak iade edilen ürün bedelini alır.
+
+    <h5>CAYMA HAKKININ KULLANILAMAYACAĞI DURUMLAR:</h5>
+
+    Mesafeli Satış Yönetmeliği'nin 15. Maddesi uyarınca, aşağıdaki durumlarda tüketici Alıcı cayma hakkını kullanamaz:
+
+    <br>(a) Finansal piyasalardaki dalgalanmalara bağlı olarak değişen ve Satıcı veya sağlayıcının kontrolünde olmayan
+    mal veya hizmetler.
+    <br>(b) Tüketicinin istekleri veya kişisel ihtiyaçları doğrultusunda hazırlanan mallar.
+    <br>(c) Çabuk bozulabilen veya son kullanma tarihi geçebilecek mallar.
+    <br>(ç) Sağlık ve hijyen açısından uygun olmayan malların teslimi.
+    <br>(d) Başka ürünlerle karışan ve doğası gereği ayrıştırılması mümkün olmayan mallar.
+    <br>(e) Ambalajı, bantı, mührü, paketi gibi koruyucu unsurları açılmış olan kitap, dijital içerik ve bilgisayar sarf
+    malzemeleri.
+    <br>(f) Gazete ve dergi gibi süreli yayınlar.
+    <br>(g) Belirli bir tarihte veya dönemde yapılan konaklama, eşya taşıma, araba kiralama, yiyecek-içecek tedariki ve
+    eğlence veya dinlenme amacıyla yapılan boş zamanın değerlendirilmesi.
+    <br>(ğ) Elektronik ortamda anında ifa edilen hizmetler veya tüketiciye anında teslim edilen gayri maddi mallar.
+    <br>(h) Tüketici onayı ile ifasına başlanan hizmetler.
+    <h5>ŞİKAYET VE İTİRAZ PROSEDÜRÜ:</h5>
+    İşbu Sözleşme'den dolayı tüketici Alıcı'nın her türlü şikayet ve itirazları, Ticaret Bakanlığı tarafından her yıl
+    Aralık ayında belirlenen parasal sınırlara göre Alıcı'nın yerleşim yerinin bulunduğu veya tüketici işleminin
+    yapıldığı yerdeki Tüketici Sorunları Hakem Heyeti'ne veya Tüketici Mahkemesi'ne yapılabilir.
+
+
+  </div>
+</div>
+
+<!-- footer start -->
+<app-footer-two></app-footer-two>
+<!-- footer end -->

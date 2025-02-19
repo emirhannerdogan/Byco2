@@ -1,0 +1,23 @@
+.halfpart {
+    margin-top: 2em;
+    margin-right: 2.5%;
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+    //justify-content: center;
+    text-align: center;
+}
+
+.abt-image {
+    border-radius: 7%;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    object-fit: none;
+    width: 100;
+    height: auto;
+}
+
+.abt-text {
+    margin-top: 1em;
+    text-align: justify;
+}

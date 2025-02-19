@@ -1,0 +1,98 @@
+<section class="tp-category-area pb-95 pt-95">
+    <div class="container">
+       <div class="row">
+          <div class="col-xl-12">
+             <div class="tp-section-title-wrapper-2 text-center mb-50">
+                <!-- <span class="tp-section-title-pre-2">
+                   Projelerimiz
+                   <svg width="82" height="22" viewBox="0 0 82 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M81 14.5798C0.890564 -8.05914 -5.81154 0.0503902 5.00322 21" stroke="currentColor" stroke-opacity="0.3" stroke-width="2" stroke-miterlimit="3.8637" stroke-linecap="round"/>
+                   </svg>
+                </span> -->
+                <p><span style=
+                    "display: inline-block;
+                    width: 100%; 
+                    margin-right: 5%; 
+                    margin-top: 1em;
+                    text-align: center;
+                    font-family: 'Helvetica', sans-serif !important;
+                    font-weight: bold !important;
+                    font-size: 30px;
+                    ">
+                    Devam Eden Projeler
+                </span></p>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-xl-12">
+             <div class="tp-category-slider-2 p-relative">
+                <div class="tp-category-slider-active-2 swiper-container mb-50">
+                   <div class="swiper-wrapper">
+                      <div *ngFor="let item of projeDevam" class="tp-category-item-2 p-relative z-index-1 text-center swiper-slide" style="background-color: #f2f3f5;">
+                         <div class="tp-category-thumb-2" *ngIf="item.aciklama==='devam'">
+                            <a [routerLink]="['/shop/shop-details', item.id]">
+                               <img [src]="item.img" alt="product-img" style="width: 100%;height: 100%">
+                            </a>
+                         </div>
+                         <div class="tp-category-content-2" style="opacity: 0.8;">
+                            <p><span style=
+                                "display: inline-block;
+                                width: 100%; 
+                                margin-right: 5%; 
+                                margin-top: 1em;
+                                text-align: justify;
+                                font-family: 'Helvetica', sans-serif !important;
+                                font-weight: light !important;
+                                font-size: 18px;
+                                ">
+                                {{ item.ad }}
+                            </span></p>
+                            <p><span style=
+                                "display: inline-block;
+                                width: 100%; 
+                                margin-right: 5%; 
+                                margin-top: 1em;
+                                text-align: justify;
+                                font-family: 'Helvetica', sans-serif !important;
+                                font-weight: light !important;
+                                ">
+                                {{ item.lokasyon }}
+                            </span></p>
+                            <p><span style=
+                                "display: inline-block;
+                                width: 100%; 
+                                margin-right: 5%; 
+                                margin-top: 1em;
+                                text-align: justify;
+                                font-family: 'Helvetica', sans-serif !important;
+                                font-weight: light !important;
+                                ">
+                                {{ item.alan }}
+                            </span></p>
+                            <p><span style=
+                                "display: inline-block;
+                                width: 100%; 
+                                margin-right: 5%; 
+                                margin-top: 1em;
+                                text-align: justify;
+                                font-family: 'Helvetica', sans-serif !important;
+                                font-weight: light !important;
+                                ">
+                                {{ item.isveren }}
+                            </span></p>
+                            
+                          
+                           
+                            
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="swiper-scrollbar tp-swiper-scrollbar tp-swiper-scrollbar-drag"></div>
+             </div>
+          </div>
+       </div>
+    </div>
+  </section>
+  

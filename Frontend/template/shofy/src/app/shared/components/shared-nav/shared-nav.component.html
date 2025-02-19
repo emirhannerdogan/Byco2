@@ -1,0 +1,146 @@
+<!-- <div class="nav-header">
+  <div *ngIf="!isMobile">
+    <ul class="main-category-list">
+      <li
+        *ngFor="let category of categories"
+        (mouseover)="showSubMenu(category)"
+        (mouseleave)="hideSubMenu()"
+      >
+        <a (click)="navigateWithCategory(category.name)">{{ category.name }}</a>
+      </li>
+
+    </ul>
+
+    <div
+      class="sub-category-container"
+      [class.show]="isSubMenuVisible"
+      *ngIf="selectedCategory "
+      (mouseover)="showSubMenu(selectedCategory)"
+      (mouseleave)="hideSubMenu()"
+    >
+      <div class="sub-category-list">
+        <ul>
+          <li *ngFor="let subCategory of selectedCategory.subCategories">
+            <a (click)="navigateWithCategory(subCategory.name)">{{ subCategory.name }}</a>
+            <ul>
+              <li *ngFor="let thirdLevel of subCategory.thirdLevels">
+                <a (click)="navigateWithCategory(thirdLevel.name)">{{ thirdLevel.name }}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isMobile">
+    <button class="hamburger-btn" (click)="toggleSideMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  
+    <div class="overlay" [class.active]="isSideMenuOpen" (click)="toggleSideMenu()"></div>
+      <div class="side-menu" [class.open]="isSideMenuOpen">
+        <div class="side-menu-header">
+          <img src="/assets/img/logo.png" alt="Logo" class="side-menu-logo" />
+          <button class="close-btn" (click)="toggleSideMenu()">X</button>
+        </div>
+        <ul class="category-list">
+          <li
+            *ngFor="let category of categories"
+            (click)="toggleSubcategories(category)"
+            [ngClass]="{ 'active-category': selectedCategory === category }"
+          >
+            <span class="category-name">{{ category.name }}</span>
+            <div class="sub-category-list">
+              <div *ngFor="let group of getChunkedCategories(selectedCategory?.subCategories || [], 5)" class="column">
+                <ul>
+                  <li *ngFor="let subCategory of group">
+                    <a (click)="navigateWithCategory(subCategory.name)">{{ subCategory.name }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+          </li>
+        </ul>
+      </div>
+
+  
+    <div class="overlay" [class.active]="isSideMenuOpen" (click)="toggleSideMenu()"></div>
+  </div>
+  
+</div> -->
+
+<div class="nav-header">
+  <div class="container">
+    <ul class="main-category-list">
+      <li
+        *ngFor="let category of categories"
+        (mouseover)="showSubMenu(category)"
+        (mouseleave)="hideSubMenu()"
+      >
+        <a class="category-link" (click)="navigateWithCategory(category.name)">
+          {{ category.name }}
+        </a>
+        <!-- Dropdown -->
+        <ul
+          class="sub-category-dropdown"
+          [class.show]="isSubMenuVisible && selectedCategory === category"
+        >
+          <li *ngFor="let subCategory of category.subCategories">
+            <a class="sub-category-link" (click)="navigateWithCategory(subCategory.name)">
+              {{ subCategory.name }}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    
+  </div>
+</div>
+
+<!-- Mobilde Açılır Sidebar Butonu -->
+<div [ngClass]="['offcanvas__area offcanvas__radius', utilsService.openCategorySidebar ? 'offcanvas-opened' : '']">
+  <div class="offcanvas__wrapper">
+    
+    <!-- Kapatma Butonu -->
+    <div class="offcanvas__close">
+      <button (click)="utilsService.handleOpenCategorySidebar()" class="offcanvas__close-btn offcanvas-close-btn">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M1 1L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Kategori Başlık -->
+    <h3 class="offcanvas__title">Kategoriler</h3>
+
+    <!-- Kategoriler Listesi -->
+    <ul class="category-list">
+      <li *ngFor="let category of categories" [class.open]="category.open">
+        <div class="category-header">
+          <a (click)="navigateWithCategory(category.name)">
+            {{ category.name }}
+          </a>
+          <button (click)="toggleSubcategories(category)">
+            <i [ngClass]="category.open ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i>
+          </button>
+        </div>
+    
+        <!-- Sub Kategoriler -->
+        <ul *ngIf="category.open" class="sub-category-list">
+          <li *ngFor="let subCategory of category.subCategories" class="sub-category-item">
+            <a (click)="navigateWithCategory(subCategory.name)">
+              {{ subCategory.name }}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    
+
+  </div>
+</div>

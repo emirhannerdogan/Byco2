@@ -1,0 +1,71 @@
+.tp-order {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  
+    .tp-order-header {
+      background-color: #f8f9fa;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      font-weight: bold;
+      color: #333;
+  
+      &:hover {
+        background-color: #e9ecef;
+      }
+    }
+  
+    .tp-order-details {
+      padding: 15px;
+      background-color: #ffffff;
+  
+      table {
+        width: 100%;
+        border-collapse: collapse;
+  
+        thead {
+          tr {
+            th {
+              padding: 10px;
+              text-align: left;
+              font-weight: 600;
+            }
+          }
+        }
+  
+        tbody {
+          tr {
+            td {
+              padding: 10px;
+              border-top: 1px solid #ddd;
+            }
+  
+            .tp-cart-title a {
+              color: #333;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  /* Sipariş durumu renkleri */
+  .status-preparing {
+    color: orange;
+  }
+  
+  .status-on-the-way {
+    color: blue;
+  }
+  
+  .status-delivered {
+    color: green;
+  }
+  
+  .status-default {
+    color: gray;
+  }
+  

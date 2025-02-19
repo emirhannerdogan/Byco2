@@ -1,0 +1,69 @@
+.tp-checkout-summary-list label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 2vh;
+}
+
+.radio-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2vh;
+}
+
+.radio-buttons label {
+  margin-right: 2vw;
+}
+
+.billing-checkbox {
+  margin-top: 2vh;
+  margin-bottom: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  align-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  user-select: none;
+  transition: background-color 0.3s, color 0.3s, 0.3s, box-shadow 0.3s;
+}
+
+.billing-checkbox input {
+  margin-right: 1vw;
+}
+
+.tp-checkout-btn-wrapper #prevBtn {
+  background-color: #f1f1f1;
+  color: #000;
+  margin-top: 1vh;
+}
+
+.tp-checkout-btn-wrapper #prevBtn:hover {
+  background-color: #ddd;
+}
+.white-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+  margin-top: 20px; /* Üstten boşluk bırak */
+}
+.dropdown-menu {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  z-index: 1050;
+  position: absolute;
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+

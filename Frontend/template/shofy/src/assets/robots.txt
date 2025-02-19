@@ -1,0 +1,8 @@
+user-agent: *
+disallow: /admin/
+disallow: /cart/
+disallow: /checkout/
+
+allow: /
+
+Sitemap: https://byco.com.tr/sitemap-file.xml

@@ -1,0 +1,43 @@
+<!-- router outlet start -->
+
+<router-outlet></router-outlet>
+
+<div *ngIf="cookieSonuc()" class="cookie-banner">
+    <div class="container-fluid">
+        <div class="alert alert-info alert-dismissible fade show d-flex align-items-center justify-content-between" style="margin-bottom: 0; background-color: rgb(45, 134, 175);">
+            <p class="mb-0" style="color: aliceblue;">Web sitemiz, size en iyi deneyimi sunmak için çerezler kullanır. Çerezleri kabul ederek sitemizi kullanmaya devam edebilirsiniz.</p>
+            <div>
+                <button type="button" class="btn btn-sm btn-success mr-5" (click)="gizle()">Kabul Et</button>
+                <a routerLink="/pages/privacy:gizlilik" class="btn btn-sm btn-danger">Gizlilik Politikasi ve Çerezler</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .cookie-banner {
+    position: fixed; /* Elemanı sabit yap */
+    bottom: 0;       /* Sayfanın altında konumlandır */
+    width: 100%;     /* Tam genişlik */
+    left: 0;         /* Sol kenardan başla */
+    z-index: 1000;   /* Üstte görünmesini sağla */
+    margin-bottom: 20px;
+}
+
+</style>
+
+
+<!-- router outlet end -->
+
+<!-- back to top start -->
+<!-- <app-back-to-top></app-back-to-top> -->
+<!-- back to top end -->
+
+<!-- product modal start -->
+<!-- <app-product-modal></app-product-modal> -->
+<!-- product modal end -->
+
+<!-- blog video popup start -->
+<!-- <app-video-popap></app-video-popap> -->
+<!-- blog video popup end -->
+

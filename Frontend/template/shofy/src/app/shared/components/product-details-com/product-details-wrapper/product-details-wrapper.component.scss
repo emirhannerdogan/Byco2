@@ -1,0 +1,200 @@
+.compare-tab {
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #0077aa;
+    padding: 8px 15px; // Sol ve sağ boşluk
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  
+    .compare-content {
+      margin-left: 300px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+  
+    .compare-info {
+      font-weight: bold;
+      color: #fff;
+      margin-right: 15px; // Sağ boşluk
+    }
+  
+    .compare-products {
+      display: flex;
+      gap: 10px; // Resimler arası boşluk
+      margin-right: 15px; // Sağdaki butonlarla boşluk
+      margin-left: 10px; // Soldan pay bırak
+  
+      img.compare-product-img {
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
+        border-radius: 3px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+    }
+  
+    .compare-buttons {
+      display: flex;
+      gap: 5px;
+  
+      .action-btn {
+        padding: 5px 10px;
+        background-color: #6c757d;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        font-size: 0.9rem;
+        cursor: pointer;
+  
+        &.compare {
+          background-color: #6c757d;
+        }
+  
+        &.clear {
+          background-color: #6c757d;
+        }
+  
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
+  
+    
+    &.hidden {
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+  }
+  .tab-toggle-btn {
+    position: fixed;
+    bottom: 2%;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4f6f8f;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1001;
+  
+    span {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .compare-tab {
+      width: 100%; /* Çubuğu ekran genişliğine uyacak şekilde sınırlandırdık */
+      height: 50px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end; /* İçeriği ortaya aldık */
+      padding-top: 5px;
+      padding-bottom: 5px;
+      overflow: hidden;
+      position: fixed;
+  
+    }
+  
+    .compare-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* İçeriği eşit şekilde yaydık */
+      width: 100%;
+      gap: 5px;
+      
+    }
+  
+    .compare-info {
+      font-size: 11px;
+      white-space: nowrap;
+      flex-shrink: 0; 
+    }
+  
+    .compare-products {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Resimleri ortaladık */
+      flex-grow: 1;
+      gap: 5px;
+    }
+  
+    .compare-products img {
+      max-width: 45px;
+      max-height: 40px;
+      flex-shrink: 0;
+  
+    }
+  
+  
+    .tab-toggle-btn {
+      font-size: 12px;
+      bottom: 3px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .compare-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+      margin-left: 20px; /* Butonları sola çek */
+    padding-right: 40px;
+    }
+  
+    .compare-buttons .action-btn {
+      font-size: 14px;
+      padding: 6px;
+      min-width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      text-align: center;
+      border-radius: 5px;
+    }
+  
+    .compare-buttons .compare {
+      background-color: transparent;
+      color: white;
+    }
+  
+    .compare-buttons .clear {
+      background-color: transparent;
+      color: white;
+    }
+  
+    /* ✅ MOBİLDE METİNLERİ GİZLE, SADECE İKON GÖRÜNSÜN */
+    .compare-buttons .desktop-text {
+      display: none;
+    }
+  
+    /* ✅ MOBİLDE İKONLARI GÖSTER */
+    .compare-buttons .mobile-icon {
+      display: block;
+    }
+  }
+  
+  /* ✅ MASAÜSTÜNDE İKONLARI GİZLE, METİNLERİ GÖSTER */
+  @media (min-width: 769px) {
+    .compare-buttons .mobile-icon {
+      display: none;
+    }
+  
+    .compare-buttons .desktop-text {
+      display: inline;
+    }
+  }

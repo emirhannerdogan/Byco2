@@ -1,0 +1,6 @@
+@bycoAPI_HostAddress = http://0.0.0.0:5141
+
+GET {{bycoAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

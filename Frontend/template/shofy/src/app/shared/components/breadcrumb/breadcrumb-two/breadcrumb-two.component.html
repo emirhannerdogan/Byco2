@@ -1,0 +1,43 @@
+<style>
+    ::marker { 
+      color: black;
+    }
+    .helvaticalight {
+        display: inline-block;
+        width: 100%; 
+        margin-right: 5%; 
+        margin-top: 1em;
+        text-align: center;
+        font-family: 'Helvetica', sans-serif !important;
+        font-weight: light !important
+    }
+    .helvaticabold {
+        display: inline-block;
+        width: 100%; 
+        margin-right: 5%; 
+        margin-top: 1em;
+        text-align: center;
+        font-family: 'Helvetica', sans-serif !important;
+        font-weight: bold !important
+    }
+</style>
+<section
+class="breadcrumb__area include-bg pt-150 pb-150 breadcrumb__overlay breadcrumb__style-3"
+style="background-image: url(/assets/img/breadcrumb/breadcrumb-bg-1.jpg);"
+>
+<div class="container">
+  <div class="row">
+    <div class="col-xxl-12">
+      <div class="breadcrumb__content text-center p-relative z-index-1">
+        <p>
+            <span class="helvaticabold" style="font-size: 35px; color: white;">{{title}}</span>
+        </p>
+        <div class="breadcrumb__list helvaticalight">
+          <span ><a routerLink="/anasayfa">Anasayfa</a></span>
+          <span>{{subtitle}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

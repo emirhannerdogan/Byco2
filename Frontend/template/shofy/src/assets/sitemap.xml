@@ -1,0 +1,114 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Ana Sayfa -->
+    <url>
+        <loc>https://byco.com.tr/</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Kategoriler -->
+    <url>
+        <loc>https://byco.com.tr/shop/shop-list?category=Araç%20Şarj%20Cihazları</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://byco.com.tr/shop/shop-list?category=Ta%C5%9F%C4%B1n%C4%B1labilir%20%C5%9Earj%20Cihaz%C4%B1</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://byco.com.tr/shop/shop-list?category=Sabit%20Ara%C3%A7%20%C5%9Earj%20Cihaz%C4%B1</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://byco.com.tr/shop/shop-list?category=Armat%C3%BCr</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://byco.com.tr/shop/shop-list?category=Enerji%20Kablolar%C4%B1</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://byco.com.tr/shop/shop-list?category=Zay%C4%B1f%20Ak%C4%B1m%20Kablolar%C4%B1</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://byco.com.tr/shop/shop-list?category=Ayd%C4%B1nlatma</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://byco.com.tr/shop/shop-list?category=Anahtar%20Priz</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://byco.com.tr/shop/shop-list?category=%C5%9Ealt%20Malzeme</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://byco.com.tr/shop/shop-list?category=Pano%20Prizleri</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://byco.com.tr/shop/shop-list?category=Elektrikli%20Araç%20Aksesuarları</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Ürünler -->
+    <url>
+        <loc>https://byco.com.tr/shop-details/933</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://byco.com.tr/shop-details/934</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.7</priority>
+    </url>
+     <url>
+        <loc>https://byco.com.tr/shop-details/935</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.7</priority>
+    </url>
+     <url>
+        <loc>https://byco.com.tr/shop-details/934</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.7</priority>
+    </url> <url>
+        <loc>https://byco.com.tr/shop-details/929</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.7</priority>
+    </url> <url>
+        <loc>https://byco.com.tr/shop-details/930</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.7</priority>
+    </url> <url>
+        <loc>https://byco.com.tr/shop-details/931</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.7</priority>
+    </url> <url>
+        <loc>https://byco.com.tr/shop-details/932</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.7</priority>
+    </url>
+     <url>
+        <loc>https://byco.com.tr/shop-details/903</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.7</priority>
+    </url>
+     <url>
+        <loc>https://byco.com.tr/shop-details/904</loc>
+        <lastmod>2024-02-13</lastmod>
+        <priority>0.7</priority>
+    </url>
+</urlset>

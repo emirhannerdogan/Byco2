@@ -1,0 +1,18 @@
+/* Büyük ekranlar için varsayılan boyut */
+.new-class {
+    height: 800px;
+}
+
+/* Tablet boyutları için */
+@media (max-width: 768px) {
+    .new-class {
+        height: 350px; // Daha küçük bir yükseklik
+    }
+}
+
+/* Mobil cihazlar için */
+@media (max-width: 480px) {
+    .new-class {
+        height: 200px; // Daha da küçük bir yükseklik
+    }
+}

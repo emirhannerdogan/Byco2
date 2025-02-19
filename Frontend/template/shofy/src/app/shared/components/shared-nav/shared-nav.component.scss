@@ -1,0 +1,395 @@
+// .main-category-list li a,
+// .sub-category-list ul li a,
+// .subcategory-list .subcategory-name,
+// .category-list .category-name {
+//   cursor: pointer; /* Mouse ikonu pointer olarak değişir */
+// }
+
+// .nav-header {
+//   background: linear-gradient(to right, #4fb8d3 0%, #1e81b0 100%);
+//   padding: 14px;
+//   text-align: center;
+//   position: sticky;
+//   top: 77px; /* Adjust as needed */
+//   z-index: 10; /* Ensure this is lower than the dropdown */
+// }
+
+
+
+// .main-category-list {
+//   position: relative; /* Sub kategori için referans noktası olacak */
+
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//     padding: 0;
+//     list-style: none;
+// }
+
+// .main-category-list li {
+//   position: relative;
+// }
+
+// .main-category-list a {
+//   color: white;
+//   text-decoration: none;
+//   font-weight: 600; /* Yazı kalınlığını azalttık */
+//   font-size: 0.9em; /* Yazı boyutunu küçülttük */
+//   padding: 8px 15px; /* İç boşlukları azaltarak daha kompakt hale getirdik */
+//   transition: background 0.3s ease;
+// }
+
+// .main-category-list a:hover {
+//   background-color: white;
+//   color: #0077aa;
+// }
+
+// /* Mobil görünüm */
+// @media (max-width: 768px) {
+//   /* Ana Kategoriler */
+// .category-list {
+//   list-style: none;
+//   padding: 0;
+//   margin: 20px 0;
+// }
+
+// .category-list li {
+//   margin-bottom: 15px;
+//   cursor: pointer;
+//   font-family: 'Poppins', sans-serif;
+//   font-weight: 600; /* Ana başlıkları kalın yap */
+//   transition: background-color 0.3s ease, color 0.3s ease;
+// }
+
+// .category-list .category-name {
+//   display: block;
+//   padding: 10px 15px;
+//   border-radius: 5px;
+//   font-size: 18px; /* Ana başlık boyutu */
+// }
+
+// .category-list li:hover .category-name {
+//   background-color: #1e81b0; /* Hover arka plan rengi */
+//   color: white; /* Hover yazı rengi */
+// }
+
+// .active-category .category-name {
+//   background-color: #0077aa; /* Seçili kategori arka plan rengi */
+//   color: white; /* Seçili kategori yazı rengi */
+// }
+
+// .category-list li:not(.active-category) .category-name {
+//   background-color: white; /* Seçili olmayan kategori arka planı */
+//   color: #333; /* Seçili olmayan kategori yazı rengi */
+// }
+
+
+// /* Alt Kategoriler */
+// .subcategory-list {
+//   list-style: none;
+//   padding: 10px 15px;
+//   margin: 10px 0 0;
+//   border-left: 2px solid #0077aa; /* Seçili kategoriye bağlı olduğunu göstermek için */
+// }
+
+// .subcategory-list .subcategory-name {
+//   font-size: 16px; /* Alt kategori boyutu */
+//   font-weight: 400; /* Alt kategori yazı kalınlığı */
+//   color: #333;
+//   margin-bottom: 5px;
+// }
+
+// .subcategory-list .subcategory-name:hover {
+//   color: #0077aa; /* Hover efekti */
+//   font-weight: 500; /* Hover sırasında yazı kalınlığı */
+// }
+
+//   .main-category-list {
+//     display: none; /* Mobilde ana kategori gizlenir */
+//   }
+
+//   .hamburger-btn {
+//     position: absolute;
+//     top: 50%; /* Dikey olarak ortalamak için */
+//     right: 10px; /* Sağdan boşluk */
+//     transform: translateY(-50%); /* Dikey merkezleme */
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-around;
+//     width: 30px; /* Buton genişliği */
+//     height: 20px; /* Buton yüksekliği */
+//     background: none;
+//     border: none;
+//     cursor: pointer;
+//     z-index: 100;
+//   }
+  
+//   .hamburger-btn span {
+//     width: 100%;
+//     height: 3px; /* Çizgi kalınlığı */
+//     background-color: white;
+//     border-radius: 5px;
+//   }
+//   /* Body kilitleme */
+//   body.side-menu-open {
+//     overflow: hidden; /* Kaydırmayı devre dışı bırakır */
+//     position: fixed;
+//     width: 100%;
+//     height: 100%;
+//   }
+//   .side-menu {
+//     position: fixed;
+//     top: 0;
+//     right: -100%;
+//     width: 80%;
+//     height: 100%;
+//     background-color: white;
+//     transition: right 0.3s ease;
+//     z-index: 1001;
+//     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+//     overflow-y: auto; /* Side menu içinde dikey kaydırma */
+
+//   }
+  
+
+//   .side-menu.open {
+//     right: 0;
+//   }
+
+//   .overlay {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100vw;
+//     height: 100vh;
+//     background-color: rgba(0, 0, 0, 0.5);
+//     z-index: 1000;
+//     display: none; /* Başlangıçta görünmez */
+//     opacity: 0;
+//     transition: opacity 0.3s ease;
+//   }
+  
+//   .overlay.active {
+//     display: block; /* Side menü açıldığında görünür */
+//     opacity: 1;
+//   }
+  
+// }
+
+// /* Masaüstü görünüm */
+// @media (min-width: 768px) {
+//   .hamburger-btn {
+//     display: none; /* Masaüstünde hamburger butonu görünmesin */
+//   }
+
+//   .side-menu {
+//     display: none; /* Masaüstünde side menü kullanılmasın */
+//   }
+// }
+
+// //Sub kategori
+// .sub-category-container {
+//   position: absolute;
+//   top: 98%; /* Ana kategori yüksekliğinin tam altına */
+//   left: 0;
+//   width: 100vw;
+//   padding: 20px;
+//   background-color: white;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//   z-index: 9;
+//   display: none; /* Başlangıçta gizli */
+// }
+
+// .sub-category-container.sticky-mode {
+//   top: 110px; /* Scroll pozisyonu yukarıdayken küçülen top değeri */
+// }
+
+
+
+
+// .sub-category-container.show {
+//   display: block; /* Menü gösterilecek */
+// }
+
+// .sub-category-list {
+//   column-count: 3; /* Dynamic columns */
+//   column-width: 150px; /* Minimum width for each column */
+//   column-gap: 80px;
+//   max-height: 485px; /* Maximum height for container */
+//   overflow-y: auto; /* Scrollable content if height exceeded */
+// }
+
+
+// .sub-category-list .column {
+//   flex: 0 0 200px; /* Her sütunun genişliğini sabitle */
+// }
+
+// .sub-category-list ul {
+//   list-style: none;
+//   margin: 0;
+//   padding: 0;
+// }
+
+// .sub-category-list li {
+//   margin-bottom: 10px;
+// }
+
+// .sub-category-list a {
+//   text-decoration: none;
+//   color: #333;
+//   font-weight: 500;
+// }
+
+
+// /* İkinci başlıklar (sub-category başlıkları) */
+// .sub-category-list li > a {
+//   font-size: 1.2em; /* Daha büyük font boyutu */
+//   font-weight: bold; /* Kalın yazı */
+//   margin-bottom: 10px; /* Alt başlıkla arada boşluk */
+//   color: #0077aa; /* Düz mavi renk */
+// }
+
+// /* Üçüncü seviyedeki başlıklar (alt başlıklar) */
+// .sub-category-list li ul {
+//   list-style: none;
+//   padding-left: 0; /* İçeriden boşluğu sıfırladık */
+// }
+
+// .sub-category-list li ul li {
+//   font-size: 1em; /* Standart boyut */
+//   margin-top: 10px; /* Üst başlıkla arada mesafe */
+//   display: block; /* Alt alta gelmesi için block olarak ayarlandı */
+//   padding-left: 10px; /* Soldan hafif boşluk bırak */
+// }
+
+// .sub-category-list li ul li a {
+//   color: #000000; /* Üçüncü başlıklar siyah olacak */
+//   font-weight: normal; /* Bold olmayacak */
+//   display: block; /* Alt alta sıralanacak */
+// }
+
+.nav-header {
+  background-color: #f5f5f5; /* Gray background */
+  padding: 10px 0;
+
+  .main-category-list {
+    display: flex;
+    justify-content: center; /* Center the navigation bar */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      position: relative;
+      margin: 0 15px; /* Add spacing between items */
+
+      .category-link {
+        text-decoration: none;
+        color: #333; /* Default text color */
+        padding: 5px 10px;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #005a96; /* Hover text color */
+        }
+      }
+    }
+  }
+}
+
+.sub-category-dropdown {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #f5f5f5;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  z-index: 100;
+  min-width: 150px; /* Minimum width for the dropdown */
+  white-space: nowrap; /* Ensure subcategory text stays on one line */
+
+  li {
+    padding: 5px 15px; /* Add padding for better spacing */
+
+    .sub-category-link {
+      text-decoration: none;
+      color: #333; /* Default text color */
+      display: inline-block; /* Ensure the link text is aligned properly */
+      width: 100%; /* Use full width to avoid alignment issues */
+      transition: color 0.3s;
+
+      &:hover {
+        color: #005a96; /* Hover text color */
+      }
+    }
+  }
+
+  &.show {
+    display: block; /* Show the dropdown when active */
+  }
+}
+@media (min-width: 768px) {
+  .mobile-nav-sidebar {
+    display: none; /* Hide the sidebar by default */
+  }
+  .mobile-menu-toggle {
+    display: none; /* Hide the toggle button by default */
+  }
+}
+@media (max-width: 768px) {
+  .nav-header {
+    display: none; /* Add padding to the header */
+  }
+  .offcanvas__area {
+    width: 80%;
+    max-width: 350px;
+  }
+
+  .category-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .category-list li {
+    background: #f5f5f5;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column; /* Alt alta gelmelerini sağlıyoruz */
+  }
+
+  .category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sub-category-list {
+    width: 100%;
+    display: block; /* Yan yana sıkışmayı engelle */
+    padding-left: 0; /* Ana kategori ile mesafeyi koru */
+    margin-top: 5px;
+  }
+
+  .sub-category-item {
+    width: 100%;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    margin-top: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .category-list button {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+}

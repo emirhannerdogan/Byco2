@@ -1,0 +1,295 @@
+.tp-header-area {
+  position: relative; /* Ensures that child elements can use absolute positioning */
+  height: 80px; /* Adjust the height to match your header */
+  line-height: 80px; /* Ensures text and inline content are vertically aligned */
+}
+
+.tp-header-area > * {
+  position: relative;
+  top: 50%; /* Pushes the content to the middle */
+  transform: translateY(-50%); /* Centers the content vertically */
+  line-height: normal; /* Resets line-height for child elements */
+}
+
+
+
+.header-top-banner {
+  width: 100%; /* Full width of the banner */
+  height: 50px; /* Fixed height for consistent appearance */
+  text-align: center;
+  overflow: hidden; /* Hide overflowing text */
+  color: white;
+  background: linear-gradient(to right, #4fb8d3 0%, #1e81b0 100%);
+  position: relative; /* Required for animations */
+  display: flex; /* Flexbox for centering */
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+}
+
+.message {
+  position: absolute; /* Required for animations */
+  white-space: nowrap; /* Prevent text wrapping */
+  animation-duration: 2s; /* Duration for enter and leave animations */
+  animation-timing-function: ease-in-out; /* Smooth animation */
+  opacity: 1; /* Fully visible by default */
+}
+
+/* Slide out completely to the left */
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0); /* Start at the current position */
+    opacity: 1; /* Fully visible */
+  }
+  100% {
+    transform: translateX(-100vw); /* Slide completely off the viewport */
+    opacity: 0; /* Fade out */
+  }
+}
+
+/* Slide in completely from the right */
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100vw); /* Start outside the viewport */
+    opacity: 0; /* Start invisible */
+  }
+  100% {
+    transform: translateX(0); /* Slide into the viewport */
+    opacity: 1; /* Fully visible */
+  }
+}
+
+.message-leave {
+  animation-name: slideOutLeft; /* Apply slide-out animation */
+}
+
+.message-enter {
+  animation-name: slideInRight; /* Apply slide-in animation */
+}
+
+
+
+  
+  
+  #header-sticky {
+    position: relative; /* Header'ın da düzgün şekilde hizalanmasını sağlıyoruz */
+    z-index: 2;
+  }
+
+
+/* Main Menu */
+.main-menu.menu-style-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Yüksekliği hizalamak için */
+}
+
+.tp-main-menu-content a {
+    font-size: 13px; /* Küçük font boyutu */
+    padding: 0 5px; /* Sağ ve sol boşlukları azaltma */
+}
+
+/* Search Bar */
+// .search-container {
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-end;
+//   width: 100%;
+//   z-index: 1100;
+//   padding: 5px;
+// }
+
+// .search-input-wrapper {
+//   display: flex;
+//   align-items: center;
+//   border: 1px solid #ddd;
+//   border-radius: 20px;
+//   padding: 5px 15px; /* Padding'i biraz artırdık */
+//   max-width: 550px; /* Arama alanı genişliğini sabit tut */
+//   width: 100%;
+//   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+//   background-color: white;
+//   position: relative; /* Dropdown'u doğru şekilde hizalamak için */
+//   z-index: 1100; /* Arama kutusunu üstte tut */
+// }
+
+// /* Search Button and Input Size */
+// .search-input-wrapper input {
+//     flex: 1;
+//     border: none;
+//     outline: none;
+//     font-size: 14px;
+//     padding: 5px;
+//     color: #333;
+// }
+
+// .search-action-btn {
+//     font-size: 14px;
+//     padding: 0 10px;
+//     color: #0077aa;
+//     font-weight: bold;
+// }
+
+
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Diğer elemanları etkilememesi için */
+  left: 70px; /* Arama çubuğunu biraz sağa kaydırır, değeri artırarak ayarlayın */
+
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5; /* Default background for the wrapper */
+    border: 1px solid #ddd; /* Default border color */
+    border-radius: 60px; /* Rounded edges */
+    padding: 0; /* No padding around the wrapper */
+    width: 563px; /* Width of the search bar */
+    height: 43px; /* Height of the search bar */
+    overflow: hidden; /* Prevent gaps between elements */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+      border: 1px solid black; /* Black border on hover */
+    }
+    &:hover input {
+      background-color: white; /* Input background turns white on wrapper hover */
+    }
+  }
+
+  input {
+    flex: 1; /* Takes up remaining space */
+    border: none; /* Remove default border */
+    outline: none; /* Remove focus outline */
+    background: transparent; /* Transparent background */
+    padding: 0 10px; /* Add some horizontal padding */
+    font-size: 16px; /* Text size */
+    color: #333; /* Default text color */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+
+    &:hover {
+      background-color: white; /* Input background turns white on hover */
+    }
+
+    &::placeholder {
+      color: black; /* Placeholder text color */
+      font-size: 14px; /* Placeholder size */
+    }
+  }
+
+  .search-action-btn {
+    background-color: rgb(17, 130, 149); /* Default button color */
+    color: #fff; /* Text/icon color */
+    border: none; /* Remove border */
+    width: 76px; /* Button width */
+    height: 43px; /* Match input height */
+    display: flex; /* Align icon properly */
+    justify-content: center; /* Center icon horizontally */
+    align-items: center; /* Center icon vertically */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 0 20px 20px 0; /* Rounded corners only on the right */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+
+    i {
+      font-size: 20px; /* Icon size */
+      line-height: 1; /* Proper vertical alignment */
+    }
+
+    &:hover {
+      background-color: black; /* Black button background only on hover */
+    }
+    &:hover + input {
+      background-color: white; /* Input background changes on button hover */
+    }
+
+    .search-action-btn:hover ~ input {
+      background-color: white; /* Input background turns white when button is hovered */
+    }
+  }
+}
+
+
+
+
+
+.tp-main-menu-content {
+  transform: scale(0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: normal; /* Varsayılan line-height’i sıfırla */
+}
+
+/* Menü Linklerinin Yüksekliğini ve Boşluklarını Ayarlayın */
+.tp-main-menu-content a {
+  font-size: 13px; /* Küçük font boyutu */
+  padding: 0 8px; /* Başlıklar arasındaki boşlukları azaltma */
+  line-height: 1; /* Dikey hizalamayı düzeltmek için */
+  height: 100%; /* Linklerin tam yükseklik kaplaması için */
+}
+.dropdown-menu {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  z-index: 1100; /* Yüksek bir z-index ile görünümü garanti altına al */
+  position: absolute;
+}
+
+.dropdown-item {
+  padding: 10px;
+  z-index: 1100;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+  z-index: 1100;
+}
+
+.tp-header-action-btn {
+  display: flex;
+  align-items: center;
+  font-family: 'Arial', sans-serif; /* Updated font */
+  font-size: 14px;
+  color: #333;
+  gap: 10px; /* Space between icon and text */
+  transition: color 0.3s ease;
+
+  
+
+  .user-name {
+    font: normal 400 17px/1 'Arial', sans-serif; /* Updated font */
+    
+    color: #333; /* Default color */
+  }
+
+  &:hover .user-name {
+    color: #005a96; /* Hover color for text */
+  }
+}
+
+@media (max-width: 768px) {
+  .header-top-banner {
+    display: none; /* Hide the banner on small screens */
+  }
+  #header-sticky {
+    margin-top: 15px !important; /* Header'a üstten boşluk ekler */
+    position: relative !important; /* Sticky yapısını kaldırıyor */
+    top: 0 !important; /* Yukarı yapışmasını engelliyor */
+    padding-top: 10px; /* Logo ile üst kenar arasına boşluk ekliyor */
+  }
+
+  .logo img {
+    max-width: 150px !important; /* Mobilde logoyu küçült */
+    height: auto !important;
+  }
+
+  .tp-header-bottom-3 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}

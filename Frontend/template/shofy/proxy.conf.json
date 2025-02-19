@@ -1,0 +1,9 @@
+{
+    "/api": {
+      "target": "https://bycobackend.online:5001",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  

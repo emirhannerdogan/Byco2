@@ -1,0 +1,188 @@
+use master
+go
+
+create database BYCO
+go
+
+use BYCO
+go
+
+CREATE TABLE [dbo].[AuthRecord](
+    [authrecord_id] [int] IDENTITY(1,1) NOT NULL,
+    [token] [nvarchar](250) NOT NULL,
+    [tokenexpiredate] [datetime] NOT NULL,
+    [user_id] [int] NOT NULL
+) ON [PRIMARY]
+GO
+
+create table Users (
+	user_id int identity(1,1),
+	ad nvarchar(50) not null,
+	soyad nvarchar(50) not null,
+	email nvarchar(100) not null unique,
+	password nvarchar(100) not null,
+	telefon nvarchar(25) not null,
+	tip int not null,
+	primary key (user_id)
+)
+go
+
+create table Sessions (
+	session_id int identity(1,1),
+	user_id int not null,
+	session_key nvarchar(64) not null,
+	expiration_date datetime not null,
+	primary key (session_id)
+)
+
+create table VergiNums (
+	vergi_id int identity(1,1),
+	user_id int not null,
+	vergi_no nvarchar(12),
+	primary key (vergi_id)
+)
+go
+
+create table KimlikNo (
+	kimlik_id int identity(1,1),
+	user_id int not null,
+	kimlik_no nvarchar(12),
+	primary key (kimlik_id)
+)
+go
+
+create table Discount (
+	discount_id int identity(1,1),
+	user_id int not null,
+	discount_rate int,
+	primary key (discount_id)
+)
+go
+
+create table Kategori (
+	kategori_id int identity(1,1),
+	parent_id int,
+	ad nvarchar(300) not null,
+	primary key (kategori_id)
+)
+go
+
+create table Siparis (
+	siparis_id int identity(1,1),
+	user_id int not null,
+	adres nvarchar(300) not null,
+	siparis_kimlik nvarchar(64) not null,
+	tarih datetime not null,
+	durum nvarchar(30) not null,
+	primary key (siparis_id)
+)
+go
+
+create table SiparisSatis (
+	siparissatis_id int identity(1,1),
+	siparis_id int not null,
+	satis_id int not null,
+	primary key (siparissatis_id)
+)
+go
+
+create table Ozellik (
+	ozellik_id int identity(1,1),
+	urun_id int not null,
+	ozellik nvarchar(200) not null,
+	aciklama nvarchar(300) not null,
+	primary key (ozellik_id)
+)
+go
+
+create table Adresler (
+	adres_id int identity(1,1),
+	user_id int not null,
+	adres nvarchar(300),
+	primary key (adres_id)
+)
+go
+
+create table Proje (
+	proje_id int identity(1,1),
+	ad nvarchar(50) not null,
+	lokasyon nvarchar(300) not null,
+	tamamlanma nvarchar(300) not null,
+	alan nvarchar(300) not null,
+	isveren nvarchar(300) not null,
+	aciklama nvarchar(300) not null,
+	img nvarchar(300) not null,
+	primary key (proje_id)
+)
+go
+
+create table Satis (
+	satis_id int identity(1,1),
+	user_id int not null,
+	urun_id int not null,
+	tarih nvarchar(200) not null,
+	adet int not null,
+	fiyat bigint not null,
+	primary key (satis_id)
+)
+go
+
+create table Urun (
+	urun_id int identity(1,1),
+	stok int not null,
+	ad nvarchar(300) not null,
+	aciklama nvarchar(300) not null,
+	kategori_id int not null,
+	img nvarchar(300) not null,
+	fiyat int not null,
+	primary key (urun_id)
+)
+go
+
+insert into Kategori values(0, 'Zayıf Akım İletişim Kabloları')
+insert into Kategori values(1, 'Koaksiyel Kablolar')
+insert into Kategori values(1, 'Yangına Dayanıklı Kablolar')
+insert into Kategori values(1, 'Dahili Telefon Kabloları')
+
+insert into Urun values(10, '2M RG 6/U-6 Cu/Cu HFFR BEYAZ - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 2, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/2m-rg-6u-6-cucu-hffr-beyaz-31e2d4..jpg', 5334)
+insert into Urun values(10, 'ERSE RG 6/U-6 Cu/Cu HFFR GRI - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 2, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/erse-rg-6u-6-cucu-hffr-gri-1ecf84..jpg', 5334)
+insert into Urun values(10, '2M RG 11/U-6 CU/CU HFFR CLASS B GRI - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 2, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/2m-rg-11u-6-cucu-hffr-class-b-gri-0d22c1..jpg', 5334)
+insert into Urun values(0, 'RG 6/U-4 HFFR Cu/SnCu TRISHIELD - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 2, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/rg-6u-4-hffr-cusncu-trishield-tlmt-7-b64d.png', 5334)
+
+insert into Urun values(10, '2M JE-H (ST)H FE 180 PH 120 TURUNCU - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 3, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/2m-je-h-sth-fe-180-ph-120-turuncu-1d3c0b..jpg', 5334)
+insert into Urun values(10, '2M LIH(St)H FE 180 TURUNCU - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 3, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/2m-lihsth-fe-180-turuncu-7-034a..jpg', 5334)
+insert into Urun values(0, '2M LIHCH FE 180 PH120 TURUNCU - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 3, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/2m-lihch-fe-180-ph120-turuncu--44df-..jpg', 5334)
+insert into Urun values(0, '2M LIHH FE 180 TURUNCU - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 3, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/2m-lihh-fe-180-turuncu-24ade7..jpg', 5334)
+
+insert into Urun values(10, 'J-H(St)H Lg - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 4, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/j-hsth-lg-ac16-9.jpg', 5334)
+insert into Urun values(10, 'Camper Teli - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 4, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/camper-teli-ab8b-f.jpg', 5334)
+insert into Urun values(0, 'ETK Kablo VBV - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 4, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/etk-kablo-vbv-4003-9..png', 5334)
+insert into Urun values(10, 'PD-APV - (TL/Mt)', 'CATV, CCTV, kablolu TV ve UYDU sistemlerinde düşük zayıflama gerektiren yerlerde dağıtım kablosu olarak kullanılırlar.', 4, 'https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/58078/uploads/urunresimleri/buyuk/pd-apv-41a9-3.jpg', 5334)
+
+insert into Ozellik values(1, 'ozellik', 'aciklama')
+insert into Ozellik values(2, 'ozellik', 'aciklama')
+insert into Ozellik values(3, 'ozellik', 'aciklama')
+insert into Ozellik values(4, 'ozellik', 'aciklama')
+insert into Ozellik values(5, 'ozellik', 'aciklama')
+insert into Ozellik values(6, 'ozellik', 'aciklama')
+insert into Ozellik values(7, 'ozellik', 'aciklama')
+insert into Ozellik values(8, 'ozellik', 'aciklama')
+insert into Ozellik values(9, 'ozellik', 'aciklama')
+insert into Ozellik values(10, 'ozellik', 'aciklama')
+insert into Ozellik values(11, 'ozellik', 'aciklama')
+insert into Ozellik values(12, 'ozellik', 'aciklama')
+go
+
+select
+    'Server=' + @@servername +
+    ';Database=' + db_name() +
+    case type_desc
+        when 'WINDOWS_LOGIN' 
+            then ';Trusted_Connection=true;TrustServerCertificate=True;'
+        else
+            ';user id=' + suser_name() + ';password=YourPassword' + ';TrustServerCertificate=True;'
+    end
+    as ConnectionString
+from sys.server_principals
+where name = suser_name()
+go

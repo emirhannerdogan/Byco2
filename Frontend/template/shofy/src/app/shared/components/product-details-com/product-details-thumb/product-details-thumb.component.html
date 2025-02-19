@@ -1,0 +1,27 @@
+<div class="tp-product-details-thumb-wrapper tp-tab d-sm-flex">
+  <nav>
+    <div
+      class="nav nav-tabs flex-sm-column"
+      id="productDetailsNavThumb"
+      role="tablist"
+    >
+      <!-- Küçük resimler -->
+      <button
+        *ngFor="let image of imageList"
+        [class.active]="image === productService.activeImg"
+        (click)="handleImageClick(image)"
+        type="button"
+        class="nav-link"
+      >
+        <img *ngIf="image" [src]="image" alt="nav-img" style="width: 60px; height: 60px; object-fit: contain; background-color: #fff;" />
+      </button>
+    </div>
+  </nav>
+
+  <!-- Büyük resim alanı -->
+  <div class="tab-content m-img" id="productDetailsNavContent">
+    <div class="tp-product-details-nav-main-thumb" style="background-color: #fff;">
+      <img *ngIf="productService.activeImg" [src]="productService.activeImg" alt="prd-image" style="width: 600px; height: 600px; object-fit: contain;" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,165 @@
+<form [formGroup]="blogReplyForm" (ngSubmit)="onSubmit()">
+  <div class="tp-postbox-details-form-wrapper">
+    <div class="tp-postbox-details-form-inner">
+
+
+      <div class="tp-postbox-details-input-box">
+        <div class="tp-contact-input">
+          <input
+            name="ad"
+            id="ad"
+            type="text"
+            placeholder="Örn: .... Projesi"
+            formControlName="ad"
+          />
+        </div>
+        <div class="tp-postbox-details-input-title">
+          <label for="ad">Ürün Adı</label>
+        </div>
+        <span
+          *ngIf="ad?.hasError('required') && (ad?.touched || formSubmitted)"
+          class="text-danger"
+        >
+        Bu alanın doldurulması zorunludur
+        </span>
+      </div>
+
+      <div class="tp-postbox-details-input-box">
+        <div class="tp-contact-input">
+          <input
+            name="lokasyon"
+            id="lokasyon"
+            type="text"
+            placeholder=""
+            formControlName="lokasyon"
+          />
+        </div>
+        <div class="tp-postbox-details-input-title">
+          <label for="lokasyon">Proje lokasyonu</label>
+        </div>
+        <span
+        *ngIf="lokasyon?.hasError('required') && (lokasyon?.touched || formSubmitted)"
+        class="text-danger"
+        >
+        Bu alanın doldurulması zorunludur
+        </span>
+      </div>
+
+      <div class="tp-postbox-details-input-box">
+        <div class="tp-contact-input">
+            <input
+            name="tamamlanma"
+            id="tamamlanma"
+            type="text"
+            placeholder="Proje henuz bitmediyse küçük harflerle devam yazınız"
+            formControlName="tamamlanma"
+          />
+        </div>
+        <div class="tp-postbox-details-input-title">
+          <label for="tamamlanma">Tamamlanma tarihi</label>
+        </div>
+        <span
+          *ngIf="
+            tamamlanma?.hasError('required') && (tamamlanma?.touched || formSubmitted)
+          "
+          class="text-danger"
+        >
+        Bu alanın doldurulması zorunludur
+        </span>
+      </div>
+
+      <div class="tp-postbox-details-input-box">
+        <div class="tp-contact-input">
+          <input
+            name="alan"
+            id="alan"
+            type="text"
+            placeholder="m2 cinsinden vermeniz gerekiyor"
+            formControlName="alan"
+          />
+        </div>
+        <div class="tp-postbox-details-input-title">
+          <label for="alan">Proje alanı</label>
+        </div>
+        <span
+          *ngIf="alan?.hasError('required') && (alan?.touched || formSubmitted)"
+          class="text-danger"
+        >
+        Bu alanın doldurulması zorunludur
+        </span>
+      </div>
+
+      <div class="tp-postbox-details-input-box">
+        <div class="tp-contact-input">
+          <input
+            name="isveren"
+            id="isveren"
+            type="text"
+            placeholder="isveren sahıs ya da firma adı"
+            formControlName="isveren"
+          />
+        </div>
+        <div class="tp-postbox-details-input-title">
+          <label for="isveren">İsveren</label>
+        </div>
+        <span
+          *ngIf="isveren?.hasError('required') && (isveren?.touched || formSubmitted)"
+          class="text-danger"
+        >
+        Bu alanın doldurulması zorunludur
+        </span>
+      </div>
+
+      <div class="tp-postbox-details-input-box">
+        <div class="tp-contact-input">
+          <input
+            name="aciklama"
+            id="aciklama"
+            type="text"
+            placeholder="Bu alan boş kalacaksa buşluk tuşuna bir kez basınız"
+            formControlName="aciklama"
+          />
+        </div>
+        <div class="tp-postbox-details-input-title">
+          <label for="aciklama">Açıklama</label>
+        </div>
+        <span
+          *ngIf="aciklama?.hasError('required') && (aciklama?.touched || formSubmitted)"
+          class="text-danger"
+        >
+        Bu alanın doldurulması zorunludur
+        </span>
+      </div>
+
+      <div class="tp-postbox-details-input-box">
+        <div class="tp-contact-input">
+          <input
+            name="img"
+            id="img"
+            type="text"
+            placeholder="görsel adını uzantısıyla(.jpg, .png vs.) beraber yazınız "
+            formControlName="img"
+          />
+        </div>
+        <div class="tp-postbox-details-input-title">
+          <label for="img">Görsel adı</label>
+        </div>
+        <span
+          *ngIf="img?.hasError('required') && (img?.touched || formSubmitted)"
+          class="text-danger"
+        >
+        Bu alanın doldurulması zorunludur
+        </span>
+      </div>
+
+
+
+
+    </div>
+    <div class="tp-postbox-details-input-box">
+      <button class="tp-postbox-details-input-btn" type="submit">
+        Projeyi Yükle
+      </button>
+    </div>
+  </div>
+</form>

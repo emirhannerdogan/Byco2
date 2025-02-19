@@ -1,0 +1,24 @@
+<div class="tp-shop-widget-content">
+  <div class="tp-shop-widget-categories">
+    <ul>
+      <!-- Sadece ad seviyesindeysek Geri Dön tuşu görünsün -->
+      <div *ngIf="isSubCategoryView" class="back-button" (click)="goBackToMainCategory()">
+        ← Geri Dön
+      </div>
+
+      <li *ngFor="let subCategory of filteredSubCategories">
+        <a
+          (click)="handleCategoryRoute(subCategory.ad)"
+          [ngClass]="{
+            'cursor-pointer': true,
+            active:
+              activeQuery === subCategory.ad.toLowerCase().replace('&', '').split(' ').join('-')
+          }"
+        >
+          {{ subCategory.ad }}
+          <span>{{ subCategory.productCount}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

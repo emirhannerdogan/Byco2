@@ -1,0 +1,185 @@
+<!-- header start -->
+<app-header-three></app-header-three>
+<!-- header end -->
+
+
+
+<section class="tp-category-area pb-95 pt-95">
+    <div class="container">
+       <div class="row">
+          <div class="col-xl-12">
+             <div class="tp-section-title-wrapper-2 text-center mb-50">
+                <!-- <span class="tp-section-title-pre-2">
+                   Projelerimiz
+                   <svg width="82" height="22" viewBox="0 0 82 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M81 14.5798C0.890564 -8.05914 -5.81154 0.0503902 5.00322 21" stroke="currentColor" stroke-opacity="0.3" stroke-width="2" stroke-miterlimit="3.8637" stroke-linecap="round"/>
+                   </svg>
+                </span> -->
+                <p *ngIf="this.getParam==='whoa'"><span style=
+                    "display: inline-block;
+                    width: 100%; 
+                    margin-right: 5%; 
+                    margin-top: 1em;
+                    text-align: center;
+                    font-family: 'Helvetica', sans-serif !important;
+                    font-weight: bold !important;
+                    font-size: 30px;
+                    ">
+                    Okul ve AVM Projelerimiz
+                </span></p>
+                <p *ngIf="this.getParam==='tdp'"><span style=
+                  "display: inline-block;
+                  width: 100%; 
+                  margin-right: 5%; 
+                  margin-top: 1em;
+                  text-align: center;
+                  font-family: 'Helvetica', sans-serif !important;
+                  font-weight: bold !important;
+                  font-size: 30px;
+                  ">
+                  Yurtdışı Projelerimiz
+              </span></p>
+              <p *ngIf="this.getParam==='st'"><span style=
+               "display: inline-block;
+               width: 100%; 
+               margin-right: 5%; 
+               margin-top: 1em;
+               text-align: center;
+               font-family: 'Helvetica', sans-serif !important;
+               font-weight: bold !important;
+               font-size: 30px;
+               ">
+               Sanayi Tesisi Projelerimiz
+           </span></p>
+           <p *ngIf="this.getParam==='ko'"><span style=
+            "display: inline-block;
+            width: 100%; 
+            margin-right: 5%; 
+            margin-top: 1em;
+            text-align: center;
+            font-family: 'Helvetica', sans-serif !important;
+            font-weight: bold !important;
+            font-size: 30px;
+            ">
+            Konut ve Ofis Projelerimiz
+        </span></p>
+        <p *ngIf="this.getParam==='cr'"><span style=
+         "display: inline-block;
+         width: 100%; 
+         margin-right: 5%; 
+         margin-top: 1em;
+         text-align: center;
+         font-family: 'Helvetica', sans-serif !important;
+         font-weight: bold !important;
+         font-size: 30px;
+         ">
+         Cafe ve Restaurant Projelerimiz
+     </span></p>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-xl-12">
+             <div class="tp-category-slider-2 p-relative">
+                  <div class="swiper-button-prev tp-swiper-button-nav" (click)="goPrev()">
+                     <i class="lnr lnr-arrow-left"></i>
+                  </div>
+                  <div class="swiper-button-next tp-swiper-button-nav" (click)="goNext()">
+                     <i class="lnr lnr-arrow-right"></i>
+                  </div>
+                <div class="tp-category-slider-active-2 swiper-container mb-50">
+                   <div class="swiper-wrapper">
+                      <div *ngFor="let item of projeDevam" class="tp-category-item-2 p-relative z-index-1 text-center swiper-slide" style="background-color: grey; display:flex; justify-content: center;">
+
+                         <div class="tp-category-thumb-2" *ngIf="item.aciklama===this.getParam">
+                            <style>
+                                .gorsel {
+    width: 244px; /* Genişlik */
+    height: 380px; /* Yükseklik */
+    display: flex;
+    justify-content: center; /* Merkezleme */
+    align-items: center; /* Merkezleme */
+    background-color: grey; /* Gri arkaplan */
+    overflow: hidden; /* Taşma durumunda gizle */
+}
+                            </style>
+                            <a [routerLink]="['/shop/shop-details', item.id]">
+                                <div class="gorsel">
+                               <img [src]="item.img" alt="product-img" style="width: 100%;height: 100%; object-fit:contain">
+                            </div>
+                            </a>
+                         </div>
+                         <div class="tp-category-content-2" style="opacity: 0.7;">
+                            <p><span style=
+                                "display: inline-block;
+                                width: 100%; 
+                                margin-right: 5%; 
+                                margin-top: 1em;
+                                text-align: justify;
+                                font-family: 'Helvetica', sans-serif !important;
+                                font-weight: bold !important;
+                                font-size: 18px;
+                                ">
+                                {{ item.ad }}
+                            </span></p>
+                            <p><span style=
+                                "display: inline-block;
+                                width: 100%; 
+                                margin-right: 5%; 
+                                margin-top: 1em;
+                                text-align: justify;
+                                font-family: 'Helvetica', sans-serif !important;
+                                font-weight: bold !important;
+                                ">
+                                {{ item.lokasyon }}
+                            </span></p>
+                            <p><span style=
+                                "display: inline-block;
+                                width: 100%; 
+                                margin-right: 5%; 
+                                margin-top: 1em;
+                                text-align: justify;
+                                font-family: 'Helvetica', sans-serif !important;
+                                font-weight: bold !important;
+                                ">
+                                {{ item.alan }}
+                            </span></p>
+                            <p><span style=
+                                "display: inline-block;
+                                width: 100%; 
+                                margin-right: 5%; 
+                                margin-top: 1em;
+                                text-align: justify;
+                                font-family: 'Helvetica', sans-serif !important;
+                                font-weight: bold !important;
+                                ">
+                                {{ item.isveren }}
+                            </span></p>
+                            
+                          
+                           
+                            
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="swiper-scrollbar tp-swiper-scrollbar tp-swiper-scrollbar-drag"></div>
+             </div>
+          </div>
+       </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+<!-- blog details area start -->
+<!-- <app-blog-details-area [blog]="blog"></app-blog-details-area> -->
+<!-- blog details area end -->
+
+<!-- footer start -->
+<app-footer-two></app-footer-two>
+<!-- footer end -->

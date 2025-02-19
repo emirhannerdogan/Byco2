@@ -1,0 +1,60 @@
+<!-- header start -->
+<app-header-four></app-header-four>
+<!-- header end -->
+<app-shared-nav></app-shared-nav>
+
+<!-- breadcrumb area start -->
+<app-breadcrumb-one title="Siparişlerim" subtitle="Siparişlerim"></app-breadcrumb-one>
+<!-- breadcrumb area end -->
+
+<!-- orders area start -->
+<section class="tp-cart-area pb-120">
+  <div class="container">
+    <div *ngIf="orders.length === 0" class="text-center pt-50">
+      <h3>Henüz Siparişiniz Yok</h3>
+      <a routerLink="/shop" class="tp-cart-checkout-btn mt-20">Alışverişe Devam Edin</a>
+    </div>
+    <div *ngIf="orders.length > 0" class="row">
+      <div class="col-12">
+        <div *ngFor="let order of orders" class="tp-order mb-25">
+          <!-- Order header -->
+          <div class="tp-order-header" (click)="toggleOrder(order)">
+            <span><strong>Sipariş ID:</strong> {{ order.orderId }}</span>
+            <span><strong>Total Fiyat:</strong> {{ order.totalPrice.toFixed(2) }} TL</span>
+            <span [ngClass]="getStatusClass(order.status)"><strong>Durum:</strong> {{ order.status }}</span>
+          </div>
+          
+          <!-- Order details (accordion content) -->
+          <div class="tp-order-details" *ngIf="order.isOpen">
+            <table>
+              <thead>
+                <tr>
+                  <th class="tp-cart-header-product">Ürün</th>
+                  <th class="tp-cart-header-price">Fiyat</th>
+                  <th class="tp-cart-header-quantity">Adet</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of order.items">
+                  <!-- title -->
+                  <td class="tp-cart-title">
+                    <a [routerLink]="['/shop/shop-details', item.id]">{{ item.title }}</a>
+                  </td>
+                  <!-- price -->
+                  <td class="tp-cart-price"><span>{{ item.price.toFixed(2) }} TL</span></td>
+                  <!-- quantity -->
+                  <td class="tp-cart-quantity">{{ item.orderQuantity }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- orders area end -->
+
+<!-- footer start -->
+<app-footer-two></app-footer-two>
+<!-- footer end -->

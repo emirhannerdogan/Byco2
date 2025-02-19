@@ -1,0 +1,109 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+<ul>
+  <li *ngFor="let item of menu_data; let i = index" [ngClass]="{'has-dropdown': item.drop_down, 'has-dropdown has-mega-menu': item.mega_menu}" style="text-align: center !important;">
+    <a [routerLink]="item.link" style="color: black; text-align: center;">
+        <p style="text-align: center !important; margin-top: 13px; line-height: 0px;"><span style=
+            "margin-top: 5px;
+            font-family: 'Poppins', sans-serif !important;
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing:1px;
+            color: black;
+            text-align: center;
+            ">
+            {{ item.title }}
+            </span></p>
+        
+    </a>
+    <div *ngIf="item.home_pages" class="home-menu tp-submenu tp-mega-menu">
+      <div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4">
+        <div *ngFor="let home of item.home_pages; let i = index" class="col">
+          <div class="home-menu-item">
+            <a [routerLink]="home.link">
+              <div class="home-menu-thumb p-relative fix">
+                <img [src]="home.img" alt="image" />
+              </div>
+              <div class="home-menu-content">
+                
+                
+                <h5 class="home-menu-title">{{ home.title }}</h5>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="item.shop_mega_menus" class="shop-mega-menu tp-submenu tp-mega-menu">
+      <div class="row">
+        <div *ngFor="let shop_m of item.shop_mega_menus; let i = index" class="col-lg-2">
+          <div class="shop-mega-menu-list">
+            <a [routerLink]="shop_m.link" class="shop-mega-menu-title">{{ shop_m.title }}</a>
+            <ul>
+              <li *ngFor="let shop_sm of shop_m.list_menus; let i = index">
+                <a [routerLink]="shop_sm.link">{{ shop_sm.title }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="shop-mega-menu-img">
+            <img src="/assets/img/menu/product/menu-product-img-1.jpg" alt="" />
+            <div class="shop-mega-menu-btn">
+              <a routerLink="/shop?category=mobile-tablets" class="tp-menu-showcase-btn tp-menu-showcase-btn-2">Phones</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="shop-mega-menu-img">
+            <img src="/assets/img/menu/product/menu-product-img-2.jpg" alt="" />
+            <div class="shop-mega-menu-btn">
+              <a routerLink="/shop?category=headphones" class="tp-menu-showcase-btn tp-menu-showcase-btn-2">Headphones</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ul *ngIf="item.product_menus" class="tp-submenu tp-mega-menu mega-menu-style-2">
+      <li *ngFor="let prd_m of item.product_menus; let i = index" class="has-dropdown">
+        <a routerLink="/shop" class="mega-menu-title">Shop Page</a>
+        <ul class="tp-submenu">
+          <li *ngFor="let prd_sm of prd_m.dropdown_menus; let i = index">
+            <a [routerLink]="prd_sm.link">{{ prd_sm.title }}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul *ngIf="item.drop_down" class="tp-submenu">
+      <li *ngFor="let drop_m of item.dropdown_menus; let i = index">
+        <a [routerLink]="drop_m.link">{{ drop_m.title }}</a>
+      </li>
+    </ul>
+  </li>
+  <li style="text-align: center;">
+    <a [routerLink]="'/shop'" style="
+        background-image: linear-gradient(to right, #4fb8d3 0%, #1e81b0 100%);
+        border: none;
+        border-radius: 15px;
+        color: black;
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        padding: 10px 20px;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        transition: background-image 0.3s ease;
+    " onmouseover="this.style.backgroundImage='linear-gradient(to right, #3da8c5 0%, #1b7495 100%)'"
+        onmouseout="this.style.backgroundImage='linear-gradient(to right, #4fb8d3 0%, #1e81b0 100%)'"
+    >
+        MAĞAZA
+  </a>
+</li>
+</ul>

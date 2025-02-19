@@ -1,0 +1,67 @@
+ <!-- header start -->
+ <app-header-four></app-header-four>
+ <!-- header end -->
+ <app-shared-nav></app-shared-nav>
+
+ <main>
+   <!-- breadcrumb area start -->
+   <app-breadcrumb-one title="Aramaya uygun ürünler" subtitle="Uygun ürünler"></app-breadcrumb-one>
+   <!-- breadcrumb area end -->
+
+   <!-- shop area start -->
+  <section class="tp-shop-area pb-120">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12">
+          <div class="tp-shop-main-wrapper">
+            <div class="tp-shop-top mb-45">
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="tp-shop-top-left d-flex align-items-center">
+                    <div class="tp-shop-top-result">
+                      <p>
+                        {{ products.length }} taneden–{{ products.length > perView ? perView : products.length }} tanesi gösteriliyor 
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="tp-shop-top-select text-md-end">
+                    <app-nice-select
+                    [options]="selectOptions"
+                    name="Varsayılan Sıralama"
+                    [defaultCurrent]="0"
+                    (onChange)="changeFilterSelect($event)"
+                    placeholder="Varsayılan Sıralama"
+                    class="d-flex justify-content-end"
+                  ></app-nice-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tp-shop-items-wrapper tp-shop-item-primary">
+              <div>
+                <div class="row infinite-container">
+                  <div *ngFor="let item of products.slice(0, perView)" class="col-xl-4 col-md-6 col-sm-6 infinite-item">
+                    <app-product-item-two [product]="item" [spacing]="true"></app-product-item-two>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button *ngIf="perView < products.length" (click)="handlePerView()" type="button" class="btn-loadmore tp-btn tp-btn-border tp-btn-border-primary">
+              Daha Fazla Ürün
+            </button>
+            <p *ngIf="perView >= products.length" class="btn-loadmore-text">Son</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- shop area end -->
+ </main>
+
+ <!-- footer start -->
+<app-footer-two></app-footer-two>
+<!-- footer end -->

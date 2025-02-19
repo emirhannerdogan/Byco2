@@ -1,0 +1,4 @@
+<a *ngFor="let item of social_data; let i = index" [ngStyle]="hovered === i ? pressedStyle(item) : buttonStyle(item)"
+  (mouseover)="hovered = i" (mouseout)="hovered = -1" [href]="item.link" target="_blank">
+  <i [class]="item.icon"></i>
+</a>

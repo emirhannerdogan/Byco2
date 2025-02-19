@@ -1,0 +1,27 @@
+<section class="tp-slider-area new-class p-relative z-index-1">
+  <div class="tp-slider-active-3 swiper-container" #swiperContainer>
+    <div class="swiper-wrapper new-class">
+      <div *ngFor="let item of slider_data"
+        class="tp-slider-item-3 new-class tp-slider-height-3 p-relative swiper-slide black-bg d-flex align-items-center">
+        <div class="tp-slider-thumb-3 new-class include-bg" [style.backgroundImage]="'url(' + item.bg + ')'"></div>
+      </div>
+    </div>
+    <!-- dot style -->
+    <div class="tp-swiper-dot tp-slider-3-dot d-sm-none"></div>
+    <!-- arrow style -->
+    <div class="tp-slider-arrow-3 d-none d-sm-block">
+      <button (click)="swiperInstance?.slidePrev()" type="button" class="tp-slider-3-button-prev">
+        <svg width="22" height="42" viewBox="0 0 22 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 0.999999L1 21L21 41" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <button (click)="swiperInstance?.slideNext()" type="button" class="tp-slider-3-button-next">
+        <svg width="22" height="42" viewBox="0 0 22 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 0.999999L21 21L1 41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,243 @@
+<div class="tp-product-details-tab-nav tp-tab">
+  <nav>
+     <div class="nav nav-tabs justify-content-center p-relative tp-product-tab" id="navPresentationTab" role="tablist">
+       <button (click)="handleActiveMarker($event)" class="nav-link" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">Açıklama</button>
+
+       <!-- <button (click)="handleActiveMarker($event)" class="nav-link active" id="nav-addInfo-tab" #navActive data-bs-toggle="tab" data-bs-target="#nav-addInfo" type="button" role="tab" aria-controls="nav-addInfo" aria-selected="false">Detaylı Özellikler</button> -->
+
+       <!-- <button (click)="handleActiveMarker($event)" class="nav-link" id="nav-review-tab" data-bs-toggle="tab" data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review" aria-selected="false">Reviews ({{product.reviews?.length}})</button> -->
+
+       <span #productTabMarker id="productTabMarker" class="tp-product-details-tab-line"></span>
+     </div>
+   </nav>
+   <div class="tab-content" id="navPresentationTabContent">
+     <div class="tab-pane fade" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab" tabindex="0">
+        <div class="tp-product-details-desc-wrapper pt-80">
+          <div class="row justify-content-center">
+            <div class="col-xl-10">
+              <div class="tp-product-details-desc-item pb-105">
+                  <div class="row">
+                    <div class="col-lg-12">
+                        <div class="tp-product-details-desc-content pt-25">
+                          <span>{{product.kategori}}</span>
+                          <h3 class="tp-product-details-desc-title">{{product.ad}}</h3>
+                          <p>{{ product.aciklama }}</p>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+     </div>
+
+     <div class="tab-pane fade show active" id="nav-addInfo" role="tabpanel" aria-labelledby="nav-addInfo-tab" tabindex="0">
+        <div class="tp-product-details-additional-info ">
+           <div class="row justify-content-center">
+              <div class="col-xl-10">
+                 <table>
+                   <tbody>
+                    <table style="border: 1;">
+                        <tr>
+                            <th>Özellik Adı</th>
+                            <th>Değer</th>
+                        </tr>
+                        <tr *ngIf="product.urun != ''">
+                          <td>Barkod</td>
+                          <td>{{ product.urun }}</td>
+                      </tr>
+                        <tr *ngIf="product.amper && product.amper.trim() != ''">
+                            <td>Amper</td>
+                            <td>{{ product.amper }}</td>
+                        </tr>
+                        <tr *ngIf="product.aydinlatmaturu && product.aydinlatmaturu.trim() !== ''">
+                            <td>Aydınlatma Türü</td>
+                            <td>{{ product.aydinlatmaturu }}</td>
+                        </tr>
+                        <tr *ngIf="product.cerceve && product.cerceve.trim() != ''">
+                            <td>Çerçeve</td>
+                            <td>{{ product.cerceve }}</td>
+                        </tr>
+                        <tr *ngIf="product.damarsayisi && product.damarsayisi.trim() != ''">
+                            <td>Damar Sayısı</td>
+                            <td>{{ product.damarsayisi }}</td>
+                        </tr>
+                        <tr *ngIf="product.disKilifrengi && product.disKilifrengi.trim() != ''">
+                            <td>Dış Kılıf Rengi</td>
+                            <td>{{ product.disKilifrengi }}</td>
+                        </tr>
+                        <tr *ngIf="product.duy && product.duy.trim() != ''">
+                            <td>Duy</td>
+                            <td>{{ product.duy }}</td>
+                        </tr>
+                        <tr *ngIf="product.isikrengi && product.isikrengi.trim() != ''">
+                            <td>Işık Rengi</td>
+                            <td>{{ product.isikrengi }}</td>
+                        </tr>
+                        <tr *ngIf="product.kablotipi && product.kablotipi.trim() != ''">
+                            <td>Kablo Tipi</td>
+                            <td>{{ product.kablotipi }}</td>
+                        </tr>
+                        <tr *ngIf="product.kablouzunlugu && product.kablouzunlugu.trim() != ''">
+                            <td>Kablo Uzunluğu</td>
+                            <td>{{ product.kablouzunlugu }}</td>
+                        </tr>
+                        <tr *ngIf="product.kanalboyutu && product.kanalboyutu.trim() != ''">
+                            <td>Kanal Boyutu</td>
+                            <td>{{ product.kanalboyutu }}</td>
+                        </tr>
+                        <tr *ngIf="product.kanalozelligi && product.kanalozelligi.trim() != ''">
+                            <td>Kanal Özelliği</td>
+                            <td>{{ product.kanalozelligi }}</td>
+                        </tr>
+                        <tr *ngIf="product.kanalrengi && product.kanalrengi.trim() != ''">
+                            <td>Kanal Rengi</td>
+                            <td>{{ product.kanalrengi }}</td>
+                        </tr>
+                        <tr *ngIf="product.kasarengi && product.kasarengi.trim() != ''">
+                            <td>Kaşa Rengi</td>
+                            <td>{{ product.kasarengi }}</td>
+                        </tr>
+                        <tr *ngIf="product.kesit && product.kesit.trim() != ''">
+                            <td>Kesit</td>
+                            <td>{{ product.kesit }}</td>
+                        </tr>
+                        <tr *ngIf="product.kesmekapasitesi && product.kesmekapasitesi.trim() != ''">
+                            <td>Kesme Kapasitesi</td>
+                            <td>{{ product.kesmekapasitesi }}</td>
+                        </tr>
+                        <tr *ngIf="product.kullanimyeri && product.kullanimyeri.trim() != ''">
+                            <td>Kullanım Yeri</td>
+                            <td>{{ product.kullanimyeri }}</td>
+                        </tr>
+                        <tr *ngIf="product.kutup && product.kutup.trim() != ''">
+                            <td>Kutup</td>
+                            <td>{{ product.kutup }}</td>
+                        </tr>
+                        <tr *ngIf="product.marka && product.marka.trim() != ''">
+                            <td>Marka</td>
+                            <td>{{ product.marka }}</td>
+                        </tr>
+                        <tr *ngIf="product.model && product.model.trim() != ''">
+                            <td>Model</td>
+                            <td>{{ product.model }}</td>
+                        </tr>
+                        <tr *ngIf="product.prizsayisi && product.prizsayisi.trim() != ''">
+                            <td>Priz Sayısı</td>
+                            <td>{{ product.prizsayisi }}</td>
+                        </tr>
+                        <tr *ngIf="product.renk && product.renk.trim() != ''">
+                            <td>Renk</td>
+                            <td>{{ product.renk }}</td>
+                        </tr>
+                        <tr *ngIf="product.renksicakligikelvin && product.renksicakligikelvin.trim() != ''">
+                            <td>Renk Sıcaklığı (Kelvin)</td>
+                            <td>{{ product.renksicakligikelvin }}</td>
+                        </tr>
+                        <tr *ngIf="product.sigortasayisi && product.sigortasayisi.trim() != ''">
+                            <td>Sigorta Sayısı</td>
+                            <td>{{ product.sigortasayisi }}</td>
+                        </tr>
+                        <tr *ngIf="product.tip && product.tip.trim() != ''">
+                            <td>Tip</td>
+                            <td>{{ product.tip }}</td>
+                        </tr>
+                        <tr *ngIf="product.tur && product.tur.trim() != ''">
+                            <td>Tür</td>
+                            <td>{{ product.tur }}</td>
+                        </tr>
+                        <tr *ngIf="product.urunozelligi && product.urunozelligi.trim() != ''">
+                            <td>Ürün Özelliği</td>
+                            <td>{{ product.urunozelligi }}</td>
+                        </tr>
+                        <tr *ngIf="product.uruntipi && product.uruntipi.trim() != ''">
+                            <td>Ürün Tipi</td>
+                            <td>{{ product.uruntipi }}</td>
+                        </tr>
+                        <tr *ngIf="product.watt && product.watt.trim() != ''">
+                            <td>Watt</td>
+                            <td>{{ product.watt }}</td>
+                        </tr>
+                        <tr *ngIf="product.indirim != 0">
+                            <td>İndirim</td>
+                            <td>{{ product.indirim }}</td>
+                        </tr>
+                    </table>
+                    
+                   </tbody>
+                 </table>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab" tabindex="0">
+        <div class="tp-product-details-review-wrapper pt-60">
+           <div class="row">
+              <div class="col-lg-6">
+                 <div class="tp-product-details-review-statics">
+                    <div class="tp-product-details-review-number d-inline-block mb-50">
+                       <h3 class="tp-product-details-review-number-title">Customer reviews</h3>
+                       <div class="tp-product-details-review-summery d-flex align-items-center">
+                          <div class="tp-product-details-review-summery-value">
+                             <span>4.5</span>
+                          </div>
+                          <!-- <div class="tp-product-details-review-summery-rating d-flex align-items-center">
+                             <span><i class="fa-solid fa-star"></i></span>
+                             <span><i class="fa-solid fa-star"></i></span>
+                             <span><i class="fa-solid fa-star"></i></span>
+                             <span><i class="fa-solid fa-star"></i></span>
+                             <span><i class="fa-solid fa-star"></i></span>
+                             <p>({{product.reviews?.length}} Reviews)</p>
+                          </div> -->
+                       </div>
+                       <div class="tp-product-details-review-rating-list">
+                          <app-product-details-rating-item [star]="5" width="82" />
+                          <app-product-details-rating-item [star]="4" width="30" />
+                          <app-product-details-rating-item [star]="3" width="15" />
+                          <app-product-details-rating-item [star]="2" width="6" />
+                          <app-product-details-rating-item [star]="1" width="10" />
+                       </div>
+                    </div>
+
+                    <div class="tp-product-details-review-list pr-110">
+                      <h3 class="tp-product-details-review-title">Rating & Review</h3>
+                      <!-- <ng-container *ngIf="product.reviews && product.reviews.length > 0; else noReviews">
+                        <div *ngFor="let item of product.reviews; let i = index" class="tp-product-details-review-avater d-flex align-items-start">
+                          <div class="tp-product-details-review-avater-thumb">
+                            <a href="#">
+                              <img [src]="item.user" alt="user">
+                            </a>
+                          </div>
+                          <div class="tp-product-details-review-avater-content">
+                            <div class="tp-product-details-review-avater-rating d-flex align-items-center">
+                              <span><i class="fa-solid fa-star"></i></span>
+                              <span><i class="fa-solid fa-star"></i></span>
+                              <span><i class="fa-solid fa-star"></i></span>
+                              <span><i class="fa-solid fa-star"></i></span>
+                              <span><i class="fa-solid fa-star"></i></span>
+                            </div>
+                            <h3 class="tp-product-details-review-avater-title">{{ item.name }}</h3>
+                            <span class="tp-product-details-review-avater-meta">{{ item.date }}</span>
+                            <div class="tp-product-details-review-avater-comment">
+                              <p>{{ item.review }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container> -->
+                      <ng-template #noReviews>
+                        <h5>No Reviews Found</h5>
+                      </ng-template>
+                    </div>
+                 </div>
+              <div class="col-lg-6">
+                 <div class="tp-product-details-review-form">
+                    <h3 class="tp-product-details-review-form-title">Review this product</h3>
+                    <p>Your email address will not be published. Required fields are marked *</p>
+                    <app-shop-details-form></app-shop-details-form>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+   </div>
+</div>

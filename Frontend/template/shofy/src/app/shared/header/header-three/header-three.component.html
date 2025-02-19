@@ -1,0 +1,71 @@
+<header>
+  <div id="header-sticky" [ngClass]="['tp-header-area tp-header-style-white tp-header tp-header-sticky has-dark-logo tp-header-height',sticky ? 'header-sticky' : '']">
+     <div class="tp-header-bottom-3 pl-35 pr-35">
+        <div class="container-fluid">
+           <div class="row align-items-center">
+              <div class="col-xl-4 col-lg-4 col-6">
+                 <div class="logo">
+
+                    <a routerLink="/anasayfa">
+                       <img class="logo-light" src="/assets/img/logoincekal.png" width="235" alt="logo">
+                       <img class="logo-dark" src="/assets/img/logoincekal.png" width="235" alt="logo">
+
+                    </a>
+                 </div>
+              </div>
+              
+              <!--burası sadece fullde var-->
+              <div class="col-xl-8 col-lg-8 d-none d-lg-block">
+                 <div class="main-menu menu-style-3 p-relative d-flex align-items-center justify-content-end">
+                    <nav class="tp-main-menu-content text-white">
+                        
+                      <app-menu-bar/>
+                      
+                    </nav>
+                 </div>
+              </div>
+
+
+              <div class="col-6">
+                 <div class="tp-header-action d-flex align-items-center justify-content-end ml-50">
+                    <!-- <div class="tp-header-action-item d-none d-sm-block">
+                       
+                    </div>
+                    <div class="tp-header-action-item d-none d-sm-block">
+                       
+                    </div>
+                    <div class="tp-header-action-item d-none d-sm-block">
+                       
+                    </div> -->
+                    <div class="tp-header-action-item d-lg-none">
+                       <button (click)="utilsService.handleOpenMobileMenu()" type="button" class="tp-header-action-btn tp-offcanvas-open-btn">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" viewBox="0 0 30 16">
+                             <rect x="10" width="20" height="2" fill="currentColor"/>
+                             <rect x="5" y="7" width="25" height="2" fill="currentColor"/>
+                             <rect x="10" y="14" width="20" height="2" fill="currentColor"/>
+                          </svg>
+                       </button>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           
+         </div>
+     </div>
+  </div>
+
+  
+ 
+</header>
+
+<!-- cart sidebar start -->
+<app-cart-sidebar></app-cart-sidebar>
+<!-- cart sidebar end -->
+
+<!-- search popup start -->
+<app-header-search></app-header-search>
+<!-- search popup end -->
+
+<!-- mobile sidebar start -->
+<app-mobile-sidebar product_type="beauty"></app-mobile-sidebar>
+<!-- mobile sidebar end -->

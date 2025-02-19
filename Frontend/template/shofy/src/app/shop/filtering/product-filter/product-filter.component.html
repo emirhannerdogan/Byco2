@@ -1,0 +1,33 @@
+<div class="filter-container">
+  <ng-container *ngFor="let filterKey of filterOptions | keyvalue">
+    <div class="filter-category" *ngIf="filterKey.value.length > 0">
+      <div class="filter-header" (click)="toggleFilter(filterKey.key)">
+        <h4>{{ formatTitle(filterKey.key) }}</h4>
+        <span class="toggle-icon" [ngClass]="{'open': isFilterOpen[filterKey.key]}"></span>
+        <div class="underline" *ngIf="isFilterOpen[filterKey.key]"></div>
+      </div>
+      <div *ngIf="isFilterOpen[filterKey.key]" class="filter-body">
+        <input
+          type="text"
+          class="filter-search"
+          placeholder="{{ formatTitle(filterKey.key) }} ara"
+          (input)="onSearch($event, filterKey.key)"
+        />
+        <ul class="filter-options">
+          <li *ngFor="let option of filteredOptions[filterKey.key] || filterKey.value">
+            <label>
+              <input
+                type="checkbox"
+                [checked]="selectedFilters[filterKey.key]?.includes(option)"
+                (change)="onFilterChange(filterKey.key, option)"
+              />
+              {{ option }}
+              <span class="option-count"> ({{ getOptionCount(filterKey.key, option) }}) </span>
+            </label>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </ng-container>
+</div>

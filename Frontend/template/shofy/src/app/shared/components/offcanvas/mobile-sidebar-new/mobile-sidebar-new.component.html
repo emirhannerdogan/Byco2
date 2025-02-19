@@ -1,0 +1,126 @@
+<div [ngClass]="['offcanvas__area offcanvas__radius', utilsService.openMobileMenus ? 'offcanvas-opened' : '']">
+    <div class="offcanvas__wrapper">
+      
+      <!-- Kapatma Butonu -->
+      <div class="offcanvas__close">
+        <button (click)="utilsService.handleOpenMobileMenu()" class="offcanvas__close-btn offcanvas-close-btn">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 1L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+  
+      <!-- Logo -->
+      <div class="offcanvas__top mb-70 d-flex justify-content-between align-items-center">
+        <div class="offcanvas__logo logo">
+          <a routerLink="/home">
+            <img src="/assets/img/logo.png" alt="BYCO Logo"/>
+          </a>
+        </div>
+      </div>
+  
+      <!-- Mağaza ve İletişim -->
+      <div class="tp-main-menu-mobile fix d-lg-none mb-40">
+        <nav class="tp-main-menu-content">
+          <ul>
+            <li>
+              <a routerLink="/shop" class="tp-header-action-btn">
+                <i class="fa fa-store"></i> Mağaza
+              </a>
+            </li>
+            <li>
+              <a routerLink='/pages/contact' class="tp-header-action-btn">
+                <i class="fa fa-phone"></i> İletişim
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+  
+      <!-- Menü İçeriği -->
+      <div class="tp-main-menu-mobile fix d-lg-none mb-40">
+        <nav class="tp-main-menu-content">
+          <ul>
+            <li>
+                <div class="search-container d-flex align-items-center">
+                  <input type="text" placeholder="Ürün arayın..." [(ngModel)]="searchText" class="form-control"/>
+                  <button (click)="handleSearchSubmit()" class="search-button">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+            </li>
+            <li>
+              <button (click)="handleOpenCategories()" class="tp-header-action-btn">
+                <i class="fa fa-bars"></i> Kategoriler
+              </button>
+            </li>
+            <li>
+              <hr class="menu-divider">
+            </li>
+            
+            <li>
+              <button (click)="cartService.handleOpenCartSidebar(); utilsService.handleOpenMobileMenu()" class="tp-header-action-btn">
+                <i class="fa fa-shopping-cart"></i> Sepet
+              </button>
+            </li>
+            <li>
+                <hr class="menu-divider">
+            </li>
+            <li>
+              <button routerLink="/pages/profile" class="tp-header-action-btn">
+                <i class="fa fa-user"></i> Profil
+              </button>
+            </li>
+             <li>
+                <hr class="menu-divider">
+            </li>
+            <li>
+              <button routerLink="/compare" class="tp-header-action-btn">
+                <i class="fa fa-exchange"></i> Karşılaştır
+              </button>
+            </li>
+           
+              
+          </ul>
+        </nav>
+      </div>
+  
+      <!-- Offcanvas Bottom -->
+      <div class="offcanvas__contact align-items-center d-none">
+        <div class="offcanvas__contact-icon mr-20">
+          <span>
+            <img src="/assets/img/icon/contact.png" alt="contact_img" />
+          </span>
+        </div>
+        <div class="offcanvas__contact-content">
+          <h3 class="offcanvas__contact-title">
+            <a href="tel:098-852-987">004524865</a>
+          </h3>
+        </div>
+      </div>
+  
+      <div class="offcanvas__bottom">
+        <div class="offcanvas__footer d-flex align-items-center justify-content-between">
+          <div class="offcanvas__currency-wrapper currency">
+            <span>
+                0216 356 29 26
+            </span>
+          </div>
+          <div class="offcanvas__select language">
+            <div class="offcanvas__lang d-flex align-items-center justify-content-md-end">
+              <div class="offcanvas__lang-wrapper">
+                <span>
+                    info@byco.com.tr
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  <div (click)="utilsService.handleOpenMobileMenu()" [ngClass]="['body-overlay', utilsService.openMobileMenus ? 'opened' : '']"></div>
+  
