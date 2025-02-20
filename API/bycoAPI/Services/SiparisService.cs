@@ -177,7 +177,7 @@ namespace bycoAPI.Services
 
             // Fiyat Bilgileri Bölümü
             sb.Append("<h3>💰 Ödeme Bilgileri</h3>");
-            decimal fiyatDecimal = decimal.Parse(siparis.fiyat, CultureInfo.InvariantCulture);
+            decimal fiyatDecimal = decimal.Parse(siparis.fiyat, CultureInfo.InvariantCulture) / 100m;
 
             string formattedPrice = fiyatDecimal.ToString("#,0.00", new CultureInfo("tr-TR"));
 
@@ -291,7 +291,7 @@ namespace bycoAPI.Services
 
             // Fiyat Bilgileri Bölümü
             sb.Append("<h3>💰 Ödeme Bilgileri</h3>");
-            decimal fiyatDecimal = decimal.Parse(siparis.fiyat, CultureInfo.InvariantCulture);
+            decimal fiyatDecimal = decimal.Parse(siparis.fiyat, CultureInfo.InvariantCulture) / 100m;
 
             string formattedPrice = fiyatDecimal.ToString("#,0.00", new CultureInfo("tr-TR"));
 
